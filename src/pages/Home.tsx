@@ -13,31 +13,33 @@ import {
   useIonViewWillEnter
 } from '@ionic/react';
 import './Home.css';
+import Parent from '../components/Parent';
 
 const Home: React.FC = () => {
 
-  const [messages, setMessages] = useState<Message[]>([]);
+  // const [messages, setMessages] = useState<Message[]>([]);
 
-  useIonViewWillEnter(() => {
-    const msgs = getMessages();
-    setMessages(msgs);
-  });
+  // useIonViewWillEnter(() => {
+  //   const msgs = getMessages();
+  //   setMessages(msgs);
+  // });
 
-  const refresh = (e: CustomEvent) => {
-    setTimeout(() => {
-      e.detail.complete();
-    }, 3000);
-  };
+  // const refresh = (e: CustomEvent) => {
+  //   setTimeout(() => {
+  //     e.detail.complete();
+  //   }, 3000);
+  // };
 
   return (
     <IonPage id="home-page">
+      
       <IonHeader>
         <IonToolbar>
           <IonTitle>Inbox</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonRefresher slot="fixed" onIonRefresh={refresh}>
+        <IonRefresher slot="fixed">
           <IonRefresherContent></IonRefresherContent>
         </IonRefresher>
 
@@ -48,10 +50,7 @@ const Home: React.FC = () => {
             </IonTitle>
           </IonToolbar>
         </IonHeader>
-
-        <IonList>
-          {messages.map(m => <MessageListItem key={m.id} message={m} />)}
-        </IonList>
+        <Parent />
       </IonContent>
     </IonPage>
   );
