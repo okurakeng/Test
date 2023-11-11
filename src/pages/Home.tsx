@@ -1,6 +1,7 @@
 import {
   IonContent,
   IonHeader,
+  IonIcon,
   IonPage,
   IonRefresher,
   IonRefresherContent,
@@ -9,13 +10,14 @@ import {
 } from "@ionic/react";
 import "./Home.css";
 import Parent from "../components/Parent";
+import { rocket } from 'ionicons/icons';
 
 const Home: React.FC = () => {
   return (
     <IonPage id="home-page">
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Next 100 Launches</IonTitle>
+          <IonTitle><IonIcon icon={rocket}></IonIcon> Next 100 Launches <IonIcon icon={rocket}></IonIcon></IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>

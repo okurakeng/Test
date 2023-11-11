@@ -17,8 +17,11 @@ import {
 } from "@ionic/react";
 import { useState } from "react";
 import "./Launch.css";
+import LaunchInfo from "./LaunchInfo";
+import LocationInfo from "./LocationInfo";
+import MissionInfo from "./MissonInfo";
 
-export default function NoteTimeline(props: any) {
+export default function LaunchTimeline(props: any) {
   const [isOpen, setIsOpen] = useState(false);
   const [id, setID] = useState(0);
 
@@ -132,59 +135,10 @@ export default function NoteTimeline(props: any) {
                           {dateGen(launch.net, launch.net_precision, false)}
                         </IonCardSubtitle>
                       </IonCardHeader>
-                      <IonItem>
-                        <IonLabel>
-                          <h2>Launch Info:</h2>
-                          <p>
-                            <b>Launch time:</b>{" "}
-                            <span>
-                              {dateGen(launch.net, launch.net_precision, true)}
-                            </span>
-                          </p>
-                          <p className="ion-text-wrap">
-                            <b>Launch Service Provider:</b>{" "}
-                            <span>{launch.launch_service_provider.name}</span>
-                          </p>
-                          <p>
-                            <b>Launch Vehicle:</b>{" "}
-                            <span>{launch.rocket.configuration.full_name}</span>
-                          </p>
-                        </IonLabel>
-                      </IonItem>
+                      <LaunchInfo launch={launch}></LaunchInfo>
+                      <MissionInfo launch={launch}></MissionInfo>
+                      <LocationInfo launch={launch}></LocationInfo>
 
-                      <IonItem>
-                        <IonLabel>
-                          <h2>Mission Info:</h2>
-                          <p>
-                            <b>Mission:</b> <span>{launch.mission ? launch.mission.name : launch.name.substring(launch.name.indexOf("|")+1)}</span>
-                          </p>
-                          <p className="ion-text-wrap">
-                            <b>Description:</b>{" "}
-                            <span>{launch.mission ? launch.mission.description : "Oh no! Error!"}</span>
-                          </p>
-                          <p>
-                            <b>Type:</b> <span>{launch.mission ? launch.mission.type : "Oh no! Error!"}</span>
-                          </p>
-                          <p>
-                            <b>Orbit:</b>{" "}
-                            <span>{launch.mission ? launch.mission.orbit.name : "Oh no! Error!"}</span>
-                          </p>
-                          <p>{getAgency(launch.mission ? launch.mission.agencies : [])}</p>
-                        </IonLabel>
-                      </IonItem>
-                      <IonItem>
-                        <IonLabel>
-                          <h2>Launch Location:</h2>
-                          <p className="ion-text-wrap">
-                            <b>Launch Pad:</b> <span>{launch.pad.name}</span>
-                          </p>
-                          <p className="ion-text-wrap">
-                            <b>Location:</b>{" "}
-                            <span>{launch.pad.location.name}</span>
-                          </p>
-                          <img src={launch.pad.map_image} />
-                        </IonLabel>
-                      </IonItem>
                     </IonCard>
                   </IonContent>
                 </IonModal>
