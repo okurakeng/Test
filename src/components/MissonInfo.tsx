@@ -32,7 +32,7 @@ export default function MissionInfo(props: any) {
     <IonItem>
       <IonLabel>
         <h2>Mission Info:</h2>
-        <p>
+        <p className="ion-text-wrap">
           <b className="ion-text-wrap">Mission:</b>{" "}
           <span>
             {launch.mission
@@ -46,11 +46,11 @@ export default function MissionInfo(props: any) {
             {launch.mission ? launch.mission.description : "Oh no! Error!"}
           </span>
         </p>
-        <p>
+        <p className="ion-text-wrap">
           <b>Type:</b>{" "}
           <span>{launch.mission ? launch.mission.type : "Oh no! Error!"}</span>
         </p>
-        <p>
+        <p className="ion-text-wrap">
           <b>Orbit:</b>{" "}
           <span>
             {launch.mission ? launch.mission.orbit.name : "Oh no! Error!"}

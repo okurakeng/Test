@@ -1,8 +1,15 @@
-import { IonItem, IonLabel } from "@ionic/react";
+import {
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonItem,
+  IonLabel,
+} from "@ionic/react";
 import "./Launch.css";
 
-export default function LaunchInfo(props: any) {
+export default function CoreInfo(props: any) {
   const { launch } = props;
+
   const dateGen = (net: any, precision: any, includeTime: boolean) => {
     if (!(net && precision)) return "Error";
 
@@ -49,23 +56,21 @@ export default function LaunchInfo(props: any) {
         months[date.getMonth()]
       } ${date.getUTCDate()}, ${date.getUTCFullYear()}`;
   };
+
   return (
-    <IonItem>
-      <IonLabel>
-        <h2>Launch Info:</h2>
-        <p className="ion-text-wrap">
-          <b>Launch time:</b>{" "}
-          <span>{dateGen(launch.net, launch.net_precision, true)}</span>
-        </p>
-        <p className="ion-text-wrap">
-          <b>Launch Service Provider:</b>{" "}
-          <span>{launch.launch_service_provider.name}</span>
-        </p>
-        <p className="ion-text-wrap">
-          <b>Launch Vehicle:</b>{" "}
-          <span>{launch.rocket.configuration.full_name}</span>
-        </p>
-      </IonLabel>
-    </IonItem>
+    <>
+      <img alt="Silhouette of mountains" src={launch.image} />
+      <IonCardHeader>
+        <IonCardTitle>
+          {launch.mission
+            ? launch.mission.name
+            : launch.name.substring(launch.name.indexOf("|") + 1)}
+        </IonCardTitle>
+        <IonCardSubtitle>
+          {launch.rocket.configuration.name} |{" "}
+          {dateGen(launch.net, launch.net_precision, false)}
+        </IonCardSubtitle>
+      </IonCardHeader>{" "}
+    </>
   );
 }

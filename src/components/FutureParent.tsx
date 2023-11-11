@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Launch from "./Launch";
 
-const Parent: React.FC = () => {
+const FutureParent: React.FC = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     getAllOrbits();
@@ -25,4 +25,4 @@ const Parent: React.FC = () => {
   return <Launch launches={data} />;
 };
 
-export default Parent;
+export default FutureParent;

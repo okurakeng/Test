@@ -9,8 +9,8 @@ import {
   IonToolbar
 } from "@ionic/react";
 import "./Home.css";
-import Parent from "../components/Parent";
 import { rocket } from 'ionicons/icons';
+import FutureParent from "../components/FutureParent";
 
 const Home: React.FC = () => {
   return (
@@ -30,7 +30,7 @@ const Home: React.FC = () => {
             <IonTitle size="large">Next 100 Launches</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <Parent />
+        <FutureParent />
       </IonContent>
     </IonPage>
   );
