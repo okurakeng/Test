@@ -2,9 +2,6 @@ import {
   IonButton,
   IonButtons,
   IonCard,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
   IonContent,
   IonGrid,
   IonHeader,
@@ -15,7 +12,7 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Launch.css";
 import LaunchInfo from "./LaunchInfo";
 import LocationInfo from "./LocationInfo";
@@ -27,6 +24,7 @@ export default function LaunchTimeline(props: any) {
   const [isOpen, setIsOpen] = useState(false);
   const [id, setID] = useState(0);
 
+
   let loadingImages = [
     "https://cdn.dribbble.com/users/2882885/screenshots/7861928/media/a4c4da396c3da907e7ed9dd0b55e5031.gif",
     "https://media.tenor.com/DHkIdy0a-UkAAAAC/loading-cat.gif",
@@ -34,6 +32,7 @@ export default function LaunchTimeline(props: any) {
     "https://64.media.tumblr.com/bdaea39db57dc0b48d763262514268db/tumblr_mgj44mNyST1s199fdo1_500.gif",
     "https://cdn.dribbble.com/users/160117/screenshots/3197970/main.gif",
   ];
+
   const displayLaunches = (props: any) => {
     const { launches } = props;
     if (launches.length > 0) {
@@ -46,11 +45,12 @@ export default function LaunchTimeline(props: any) {
             </IonItem>
             <IonItem className="rows">
               <p className="ion-label">
-                Created Ionic React with Axiom. All data cutesy of
+                Created Ionic React with Axiom. All data courtesy of
                 thespacedevs's API.{" "}
                 <a href="https://lldev.thespacedevs.com/docs/">
                   See their website for more info
-                </a>. Some data is inaccurate due to using the free dev API.
+                </a>
+                . Some data is inaccurate due to using the free dev API.
               </p>
             </IonItem>
 

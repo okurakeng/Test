@@ -5,11 +5,9 @@ import Launch from "./Launch";
 const PastParent: React.FC = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    getAllOrbits();
+    getAllOrbits("https://lldev.thespacedevs.com/2.2.0/launch/previous/?format=json&limit=100");
   }, []);
-  const url =
-    "https://lldev.thespacedevs.com/2.2.0/launch/previous/?format=json&limit=100";
-  const getAllOrbits = () => {
+  const getAllOrbits = (url : any) => {
     axios
       .get(url)
       .then((response) => {

@@ -38,7 +38,7 @@ export default function StatusInfo(props: any) {
         break;
     }
     console.log(color)
-    if (launch.status.id == 8) {
+    if (launch.status.id == 8 || launch.status.id == 2) {
       return <></>;
     } else {
       return (

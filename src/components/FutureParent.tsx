@@ -5,15 +5,14 @@ import Launch from "./Launch";
 const FutureParent: React.FC = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    getAllOrbits();
+    getAllOrbits("https://lldev.thespacedevs.com/2.2.0/launch/upcoming/?format=json&limit=100");
   }, []);
-  const url =
-    "https://lldev.thespacedevs.com/2.2.0/launch/upcoming/?format=json&limit=100";
-  const getAllOrbits = () => {
+ 
+  const getAllOrbits = (url : string) => {
     axios
       .get(url)
       .then((response) => {
-        console.log(response.data.results);
+        console.log(response.data);
         setData(response.data.results);
       })
       .catch((error) => {
