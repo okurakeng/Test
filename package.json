@@ -1,17 +1,18 @@
 {
+  "hompage": "https:/okaykenji.github.io/data/",
   "name": "Data",
   "private": true,
   "version": "0.0.1",
   "type": "module",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test.e2e": "cypress run",
     "test.unit": "vitest",
-    "lint": "eslint",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "lint": "eslint"
   },
   "dependencies": {
     "@capacitor/app": "5.0.6",
@@ -49,6 +50,5 @@
     "vite": "4.5.0",
     "vitest": "^0.32.2"
   },
-  "description": "An Ionic project",
-  "hompage": "https://github.com/OkayKenji/Data/"
+  "description": "An Ionic project"
 } 
