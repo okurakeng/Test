@@ -45,7 +45,7 @@ export default function LaunchTimeline(props: any) {
             </IonItem>
             <IonItem className="rows">
               <p className="ion-label">
-                Created Ionic React with Axiom. All data courtesy of
+                Created Ionic React with Axios. All data courtesy of
                 thespacedevs's API.{" "}
                 <a href="https://lldev.thespacedevs.com/docs/">
                   See their website for more info
