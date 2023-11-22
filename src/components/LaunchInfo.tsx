@@ -40,6 +40,12 @@ export default function LaunchInfo(props: any) {
       } ${date.getUTCDate()}, ${date.getUTCFullYear()}`;
     }
 
+    if (precision.id >= 1) {
+      return `~${net.substring(net.indexOf("T") + 1, net.length - 4)}, ${
+        months[date.getMonth()]
+      } ${date.getUTCDate()}, ${date.getUTCFullYear()}`
+    }
+
     if (includeTime)
       return `${net.substring(net.indexOf("T") + 1, net.length - 1)}, ${
         months[date.getMonth()]
