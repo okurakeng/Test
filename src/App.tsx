@@ -42,22 +42,22 @@ const App: React.FC = () => (
       <IonTabs>
         <IonRouterOutlet>
           <Route path="/" exact={true}>
-            <Redirect to="/home" />
+            <Redirect to="/data" />
           </Route>
-          <Route path="/home" exact={true}>
+          <Route path="/data" exact={true}>
             <Home />
           </Route>
-          <Route path="/past" exact={true}>
+          <Route path="/data/past" exact={true}>
             <Past />
           </Route>
         </IonRouterOutlet>
 
         <IonTabBar slot="bottom">
-          <IonTabButton tab="Past" href="/past">
+          <IonTabButton tab="Past" href="/data/past">
             <IonIcon icon={caretBackOutline}></IonIcon>
             <IonLabel>Past</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="home" href="/home">
+          <IonTabButton tab="home" href="/data">
             <IonIcon icon={caretForwardOutline}></IonIcon>
             <IonLabel>Future</IonLabel>
           </IonTabButton>
