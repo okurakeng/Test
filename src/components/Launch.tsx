@@ -2,6 +2,7 @@ import {
   IonButton,
   IonButtons,
   IonCard,
+  IonCol,
   IonContent,
   IonGrid,
   IonHeader,
@@ -9,6 +10,8 @@ import {
   IonLabel,
   IonModal,
   IonProgressBar,
+  IonRow,
+  IonText,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
@@ -23,7 +26,6 @@ import StatusInfo from "./StatusInfo";
 export default function LaunchTimeline(props: any) {
   const [isOpen, setIsOpen] = useState(false);
   const [id, setID] = useState(0);
-
 
   let loadingImages = [
     "https://cdn.dribbble.com/users/2882885/screenshots/7861928/media/a4c4da396c3da907e7ed9dd0b55e5031.gif",
@@ -41,28 +43,69 @@ export default function LaunchTimeline(props: any) {
         <>
           <IonGrid>
             <IonItem className="rows">
-              <h1>Attributions:</h1>
+              <h1>Upcoming Launch:</h1>
             </IonItem>
-            <IonItem className="rows">
-              <p className="ion-label">
-                Created Ionic React with Axios. All data courtesy of
-                thespacedevs's API.{" "}
-                <a href="https://lldev.thespacedevs.com/docs/">
-                  See their website for more info
-                </a>
-                . Some data is inaccurate due to using the free dev API.
-              </p>
-            </IonItem>
+            {
+              <IonGrid className="rows">
+                <IonRow class="ion-align-items-center">
+                  <IonCol size="auto">
+                    <IonItem className="rows" key={4}>
+                      <IonCard
+                        onClick={() => {
+                          setID(launches[0].id);
+                          setIsOpen(true);
+                        }}
+                      >
+                        <img
+                          className="specialImage"
+                          alt="Silhouette of mountains"
+                          src={launches[0].image}
+                        />
+                        <LaunchInfo launch={launches[0]}></LaunchInfo>
+                        <IonLabel>Click this tab for more info!</IonLabel>
+                      </IonCard>
+                      <IonModal isOpen={isOpen && launches[0].id == id}>
+                        <IonHeader>
+                          <IonToolbar>
+                            <IonTitle>Launch</IonTitle>
+                            <IonButtons slot="end">
+                              <IonButton onClick={() => setIsOpen(false)}>
+                                Close
+                              </IonButton>
+                            </IonButtons>
+                          </IonToolbar>
+                        </IonHeader>
+                        <IonContent>
+                          <IonCard>
+                            <CoreInfo launch={launches[0]}></CoreInfo>
+                            <LaunchInfo launch={launches[0]}></LaunchInfo>
+                            <StatusInfo launch={launches[0]}></StatusInfo>
+                            <MissionInfo launch={launches[0]}></MissionInfo>
+                            <LocationInfo launch={launches[0]}></LocationInfo>
+                          </IonCard>
+                        </IonContent>
+                      </IonModal>
+                    </IonItem>
+                  </IonCol>
+                  <IonCol><h1>Next Launch In 3 days 1 hr 0 sec</h1></IonCol>
+                </IonRow>
+              </IonGrid>
+            }
 
             <IonItem className="rows">
-              <h1>Launches:</h1>
+              <h1>Other Launches:</h1>
             </IonItem>
 
-            {launches.map((launch: any, index: number) => {
+            {launches.slice(1).map((launch: any, index: number) => {
               return (
                 <IonItem className="rows" key={index}>
+                  <img
+                          className="specialImage1"
+                          alt="Silhouette of mountains"
+                          src={launch.image}
+                        />
                   <IonLabel>
-                    {launch.mission
+                    {" "}| {launch.mission
                       ? launch.mission.name
                       : launch.name.substring(launch.name.indexOf("|") + 1)}
                   </IonLabel>
@@ -100,6 +143,20 @@ export default function LaunchTimeline(props: any) {
                 </IonItem>
               );
             })}
+
+            <IonItem className="rows">
+              <h1>Attributions:</h1>
+            </IonItem>
+            <IonItem className="rows">
+              <p className="ion-label">
+                Created Ionic React with Axios. All data courtesy of
+                thespacedevs's API.{" "}
+                <a href="https://lldev.thespacedevs.com/docs/">
+                  See their website for more info
+                </a>
+                . Some data is inaccurate due to using the free dev API.
+              </p>
+            </IonItem>
           </IonGrid>
         </>
       );
