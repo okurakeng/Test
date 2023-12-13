@@ -25,11 +25,16 @@ import CoreInfo from "./CoreInfo";
 import StatusInfo from "./StatusInfo";
 import FeaturedLaunches from "./FeaturedLaunch";
 import Email from "./Email";
+import { Haptics, ImpactStyle } from '@capacitor/haptics';
 
 export default function LaunchTimeline(props: any) {
   const [isOpen, setIsOpen] = useState(false);
   const [id, setID] = useState(0);
-
+  const hapticsSelectionStart = async () => {
+    await Haptics.selectionStart();
+    await Haptics.selectionChanged();
+  };
+  
   let loadingImages = [
     "https://cdn.dribbble.com/users/2882885/screenshots/7861928/media/a4c4da396c3da907e7ed9dd0b55e5031.gif",
     "https://media.tenor.com/DHkIdy0a-UkAAAAC/loading-cat.gif",
@@ -75,8 +80,8 @@ export default function LaunchTimeline(props: any) {
                     onClick={() => {
                       setID(launch.id);
                       setIsOpen(true);
-                     // navigator.vibrate([1000, 1000, 3000, 1000, 5000]);
-                     navigator.vibrate([100])
+                      hapticsSelectionStart();
+                    //  navigator.vibrate([100])
                     }}
                   >
                     More Info
