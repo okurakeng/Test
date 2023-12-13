@@ -74,6 +74,8 @@ export default function LaunchTimeline(props: any) {
                     onClick={() => {
                       setID(launch.id);
                       setIsOpen(true);
+                     // navigator.vibrate([1000, 1000, 3000, 1000, 5000]);
+                     navigator.vibrate([100])
                     }}
                   >
                     More Info
@@ -84,7 +86,9 @@ export default function LaunchTimeline(props: any) {
                       <IonToolbar>
                         <IonTitle>Launch</IonTitle>
                         <IonButtons slot="end">
-                          <IonButton onClick={() => setIsOpen(false)}>
+                          <IonButton onClick={() => {setIsOpen(false)
+                          navigator.vibrate([100,0,100])
+                          }}>
                             Close
                           </IonButton>
                         </IonButtons>

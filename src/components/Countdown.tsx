@@ -54,7 +54,7 @@ export default function Countdown(props: any) {
     else 
       return `T+${days}:${hours}:${min}:${sec}`;
   }
-  return <p style={{ fontSize: "3em", color: "white" }}>{timeLeft}</p>;
+  return <p style={{ fontSize: "3em" }}>{timeLeft}</p>;
 
 
 };
