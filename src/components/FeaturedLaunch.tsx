@@ -24,6 +24,7 @@ import LocationInfo from "./LocationInfo";
 import MissionInfo from "./MissonInfo";
 import { useState } from "react";
 import Countdown from "./Countdown";
+import Email from "./Email";
 
 export default function FeaturedLaunches(props: any) {
   const [isOpen, setIsOpen] = useState(false);
@@ -75,6 +76,7 @@ export default function FeaturedLaunches(props: any) {
                   <StatusInfo launch={launch}></StatusInfo>
                   <MissionInfo launch={launch}></MissionInfo>
                   <LocationInfo launch={launch}></LocationInfo>
+                  <Email launch={launch}></Email>
                 </IonCard>
               </IonContent>
             </IonModal>

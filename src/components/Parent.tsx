@@ -67,6 +67,16 @@ export default function Parent(props: any) {
 
   const getAllLaunches = (url: string) => {
     console.log("hey....api contacted")
+
+   axios.get("https://ll.thespacedevs.com/2.2.0/api-throttle/").then( (response) => {
+      if (response.data.current_use > 10) {
+        setData(data);
+      }
+  
+    }).catch((error) => {
+      console.log("Error of type", error.message, "occurred");
+    } )
+    
     axios
       .get(url)
       .then((response) => {

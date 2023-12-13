@@ -24,6 +24,7 @@ import MissionInfo from "./MissonInfo";
 import CoreInfo from "./CoreInfo";
 import StatusInfo from "./StatusInfo";
 import FeaturedLaunches from "./FeaturedLaunch";
+import Email from "./Email";
 
 export default function LaunchTimeline(props: any) {
   const [isOpen, setIsOpen] = useState(false);
@@ -87,7 +88,7 @@ export default function LaunchTimeline(props: any) {
                         <IonTitle>Launch</IonTitle>
                         <IonButtons slot="end">
                           <IonButton onClick={() => {setIsOpen(false)
-                          navigator.vibrate([100,0,100])
+                          navigator.vibrate([100,100,100])
                           }}>
                             Close
                           </IonButton>
@@ -101,6 +102,7 @@ export default function LaunchTimeline(props: any) {
                         <StatusInfo launch={launch}></StatusInfo>
                         <MissionInfo launch={launch}></MissionInfo>
                         <LocationInfo launch={launch}></LocationInfo>
+                        <Email launch={launch}></Email>
                       </IonCard>
                     </IonContent>
                   </IonModal>

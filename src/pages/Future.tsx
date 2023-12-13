@@ -1,4 +1,5 @@
 import {
+  IonButton,
   IonContent,
   IonHeader,
   IonIcon,
@@ -13,6 +14,12 @@ import { rocket } from 'ionicons/icons';
 import Parent from "../components/Parent";
 
 const Future: React.FC = () => {
+  try {
+  AndroidFullScreen.immersiveMode(()=>{console.log(":)")}, console.log(":("))
+  } catch {
+    
+  }
+
   return (
     <IonPage id="home-page">
       <IonHeader>
@@ -32,6 +39,7 @@ const Future: React.FC = () => {
         </IonHeader>
         {/* <FutureParent /> */}
         <Parent url={"https://lldev.thespacedevs.com/2.2.0/launch/upcoming/?format=json&limit=100"} dataName={"dataFuture"} dateName={"dataFutureDate"} />
+        {/* <IonButton onClick={ () => {}>Click Me!</IonButton> */}
       </IonContent>
     </IonPage>
   );

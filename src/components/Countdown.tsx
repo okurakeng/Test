@@ -47,7 +47,7 @@ export default function Countdown(props: any) {
     min += "";
     sec += "";
 
-    console.log(`${days}:${hours}:${min}:${sec}`);
+ //   console.log(`${days}:${hours}:${min}:${sec}`);
 
     if ( Date.now() - launchTime < 0)
       return `T-${days}:${hours}:${min}:${sec}`;
