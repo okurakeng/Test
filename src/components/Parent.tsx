@@ -3,7 +3,10 @@ import axios from "axios";
 import Launch from "./Launch";
 import localforage from "localforage";
 
-const FutureParent: React.FC = () => {
+export default function Parent(props: any) {
+  const {url,dataName,dateName} = props;
+  console.log(url,dataName,dateName)
+
   const [data, setData] = useState([]);
   const [lastUpdate, setDate] = useState("");
 
@@ -12,32 +15,32 @@ const FutureParent: React.FC = () => {
       console.log("Working"); // pass test
 
       localforage
-        .getItem("dataFutureDate")
+        .getItem(dateName)
         .then(function (date : any) {
           
           if (date == null) {
             console.log("No date")
             getAllLaunches(
-              "https://lldev.thespacedevs.com/2.2.0/launch/upcoming/?format=json&limit=100"
+                url
             );
           } else {
             //console.log(date)
             localforage
-            .getItem("dataFuture")
+            .getItem(dataName)
             .then(function (data: any) {
               // This code runs once the value has been loaded
               // from the offline store.
               if (data == null) {
                 console.log("No data")
                 getAllLaunches(
-                  "https://lldev.thespacedevs.com/2.2.0/launch/upcoming/?format=json&limit=100"
+                    url
                 );
               } else {
                // console.log(date,new Date(),Math.abs(date - new Date()))
                 if (Math.abs(date.getTime() - new Date().getTime()) > 30 * 60 * 1000) {
                   console.log("too long")
                   getAllLaunches(
-                    "https://lldev.thespacedevs.com/2.2.0/launch/upcoming/?format=json&limit=100"
+                    url
                   );
                 } else {
                   console.log("got saved data")
@@ -71,7 +74,7 @@ const FutureParent: React.FC = () => {
         setData(response.data.results);
 
         localforage
-          .setItem("dataFuture", response.data.results)
+          .setItem(dataName, response.data.results)
           .then(function (value: any) {
             // Do other things once the value has been saved.
             console.log(value);
@@ -82,7 +85,7 @@ const FutureParent: React.FC = () => {
           });
 
         localforage
-          .setItem("dataFutureDate", new Date())
+          .setItem(dateName, new Date())
           .then(function (value: any) {
             setDate(value)
             // Do other things once the value has been saved.
@@ -101,5 +104,3 @@ const FutureParent: React.FC = () => {
 
   return <Launch launches={data} date={lastUpdate} />;
 };
-
-export default FutureParent;

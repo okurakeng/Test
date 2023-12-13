@@ -36,7 +36,8 @@ export default function LaunchTimeline(props: any) {
   ];
 
   const displayLaunches = (props: any) => {
-    const { launches } = props;
+
+    const { launches, date } = props;
     if (launches.length > 0) {
       // console.log(orbits);
       return (
@@ -154,7 +155,7 @@ export default function LaunchTimeline(props: any) {
                 <a href="https://lldev.thespacedevs.com/docs/">
                   See their website for more info
                 </a>
-                . Some data is inaccurate due to using the free dev API.
+                . Some data is inaccurate due to using the free dev API. Date last updated {date.toString()}
               </p>
             </IonItem>
           </IonGrid>
