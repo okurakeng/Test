@@ -10,7 +10,7 @@ import {
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import Home from "./pages/Home";
+import Future from "./pages/Future";
 import Past from "./pages/Past";
 
 /* Core CSS required for Ionic components to work properly */
@@ -45,7 +45,7 @@ const App: React.FC = () => (
             <Redirect to="/data" />
           </Route>
           <Route path="/data" exact={true}>
-            <Home />
+            <Future />
           </Route>
           <Route path="/data/past" exact={true}>
             <Past />

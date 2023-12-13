@@ -10,10 +10,9 @@ import {
 } from "@ionic/react";
 import "./Home.css";
 import { rocket } from 'ionicons/icons';
-import FutureParent from "../components/FutureParent";
 import Parent from "../components/Parent";
 
-const Home: React.FC = () => {
+const Future: React.FC = () => {
   return (
     <IonPage id="home-page">
       <IonHeader>
@@ -38,4 +37,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default Future;

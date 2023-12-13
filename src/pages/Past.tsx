@@ -10,7 +10,7 @@ import {
   } from "@ionic/react";
   import "./Home.css";
   import { rocket } from 'ionicons/icons';
-import PastParent from "../components/PastParent";
+import Parent from "../components/Parent";
   
   const Past: React.FC = () => {
     return (
@@ -30,7 +30,8 @@ import PastParent from "../components/PastParent";
               <IonTitle size="large">Past 100 Launches</IonTitle>
             </IonToolbar>
           </IonHeader>
-          <PastParent />
+        <Parent url={"https://lldev.thespacedevs.com/2.2.0/launch/previous/?format=json&limit=100"} dataName={"dataPast"} dateName={"dataPastDate"} />
+          
         </IonContent>
       </IonPage>
     );

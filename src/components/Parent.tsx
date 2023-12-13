@@ -4,8 +4,8 @@ import Launch from "./Launch";
 import localforage from "localforage";
 
 export default function Parent(props: any) {
+  const WAIT_MINUTES = 30;
   const {url,dataName,dateName} = props;
-  console.log(url,dataName,dateName)
 
   const [data, setData] = useState([]);
   const [lastUpdate, setDate] = useState("");
@@ -37,7 +37,7 @@ export default function Parent(props: any) {
                 );
               } else {
                // console.log(date,new Date(),Math.abs(date - new Date()))
-                if (Math.abs(date.getTime() - new Date().getTime()) > 30 * 60 * 1000) {
+                if (Math.abs(date.getTime() - new Date().getTime()) > WAIT_MINUTES * 60 * 1000) {
                   console.log("too long")
                   getAllLaunches(
                     url
@@ -98,7 +98,24 @@ export default function Parent(props: any) {
       })
       .catch((error) => {
         console.log("Error of type", error.message, "occurred");
-        alert(`Error! An ${error.message} occurred.`);
+        
+        if (error.message == "Network Error") {
+          localforage
+          .getItem(dataName)
+          .then(function (data: any) {
+            // This code runs once the value has been loaded
+            // from the offline store.
+            if (data == null) {
+              console.log("Error")
+            } else {       
+                setData(data);
+            }
+          })
+          .catch(function (err: any) {
+            // This code runs if there were any errors
+            console.log(err);
+          });      
+        }
       });
   };
 

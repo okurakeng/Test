@@ -59,7 +59,7 @@ export default function CoreInfo(props: any) {
 
   return (
     <>
-      <img alt="Silhouette of mountains" src={launch.image} />
+      <img alt="Img missing " src={launch.image} />
       <IonCardHeader>
         <IonCardTitle>
           {launch.mission

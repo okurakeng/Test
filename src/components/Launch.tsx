@@ -2,6 +2,7 @@ import {
   IonButton,
   IonButtons,
   IonCard,
+  IonCardTitle,
   IonCol,
   IonContent,
   IonGrid,
@@ -22,6 +23,7 @@ import LocationInfo from "./LocationInfo";
 import MissionInfo from "./MissonInfo";
 import CoreInfo from "./CoreInfo";
 import StatusInfo from "./StatusInfo";
+import FeaturedLaunches from "./FeaturedLaunch";
 
 export default function LaunchTimeline(props: any) {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +38,6 @@ export default function LaunchTimeline(props: any) {
   ];
 
   const displayLaunches = (props: any) => {
-
     const { launches, date } = props;
     if (launches.length > 0) {
       // console.log(orbits);
@@ -44,54 +45,10 @@ export default function LaunchTimeline(props: any) {
         <>
           <IonGrid>
             <IonItem className="rows">
-              <h1>Upcoming Launch:</h1>
+              <h1>Featured Launch:</h1>
             </IonItem>
-            {
-              <IonGrid className="rows">
-                <IonRow class="ion-align-items-center">
-                  <IonCol size="auto">
-                    <IonItem className="rows" key={4}>
-                      <IonCard
-                        onClick={() => {
-                          setID(launches[0].id);
-                          setIsOpen(true);
-                        }}
-                      >
-                        <img
-                          className="specialImage"
-                          alt="Silhouette of mountains"
-                          src={launches[0].image}
-                        />
-                        <LaunchInfo launch={launches[0]}></LaunchInfo>
-                        <IonLabel>Click this tab for more info!</IonLabel>
-                      </IonCard>
-                      <IonModal isOpen={isOpen && launches[0].id == id}>
-                        <IonHeader>
-                          <IonToolbar>
-                            <IonTitle>Launch</IonTitle>
-                            <IonButtons slot="end">
-                              <IonButton onClick={() => setIsOpen(false)}>
-                                Close
-                              </IonButton>
-                            </IonButtons>
-                          </IonToolbar>
-                        </IonHeader>
-                        <IonContent>
-                          <IonCard>
-                            <CoreInfo launch={launches[0]}></CoreInfo>
-                            <LaunchInfo launch={launches[0]}></LaunchInfo>
-                            <StatusInfo launch={launches[0]}></StatusInfo>
-                            <MissionInfo launch={launches[0]}></MissionInfo>
-                            <LocationInfo launch={launches[0]}></LocationInfo>
-                          </IonCard>
-                        </IonContent>
-                      </IonModal>
-                    </IonItem>
-                  </IonCol>
-                  <IonCol><h1>Next Launch In 3 days 1 hr 0 sec</h1></IonCol>
-                </IonRow>
-              </IonGrid>
-            }
+            
+            <FeaturedLaunches launch={launches[0]}></FeaturedLaunches>
 
             <IonItem className="rows">
               <h1>Other Launches:</h1>
@@ -101,12 +58,14 @@ export default function LaunchTimeline(props: any) {
               return (
                 <IonItem className="rows" key={index}>
                   <img
-                          className="specialImage1"
-                          alt="Silhouette of mountains"
-                          src={launch.image}
-                        />
+                    className="specialImage1"
+                    alt="Img missing "
+                    src={launch.image}
+                  />
                   <IonLabel>
-                    {" "}| {launch.mission
+                    {" "}
+                    |{" "}
+                    {launch.mission
                       ? launch.mission.name
                       : launch.name.substring(launch.name.indexOf("|") + 1)}
                   </IonLabel>
@@ -155,7 +114,8 @@ export default function LaunchTimeline(props: any) {
                 <a href="https://lldev.thespacedevs.com/docs/">
                   See their website for more info
                 </a>
-                . Some data is inaccurate due to using the free dev API. Date last updated {date.toString()}
+                . Some data is inaccurate due to using the free dev API. Date
+                last updated {date.toString()}
               </p>
             </IonItem>
           </IonGrid>
