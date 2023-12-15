@@ -38,7 +38,7 @@ const Future: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         {/* <FutureParent /> */}
-        <Parent url={"https://lldev.thespacedevs.com/2.2.0/launch/upcoming/?format=json&limit=100"} dataName={"dataFuture"} dateName={"dataFutureDate"} />
+        <Parent url={"https://ll.thespacedevs.com/2.2.0/launch/upcoming/?format=json&limit=100"} dataName={"dataFuture"} dateName={"dataFutureDate"} />
         {/* <IonButton onClick={ () => {}>Click Me!</IonButton> */}
       </IonContent>
     </IonPage>

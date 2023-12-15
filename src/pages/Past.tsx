@@ -30,7 +30,7 @@ import Parent from "../components/Parent";
               <IonTitle size="large">Past 100 Launches</IonTitle>
             </IonToolbar>
           </IonHeader>
-        <Parent url={"https://lldev.thespacedevs.com/2.2.0/launch/previous/?format=json&limit=100"} dataName={"dataPast"} dateName={"dataPastDate"} />
+        <Parent url={"https://ll.thespacedevs.com/2.2.0/launch/previous/?format=json&limit=100"} dataName={"dataPast"} dateName={"dataPastDate"} />
           
         </IonContent>
       </IonPage>
