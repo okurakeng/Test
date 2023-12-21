@@ -9,13 +9,12 @@ import {
   IonTitle,
   IonToolbar
 } from "@ionic/react";
-import "./Home.css";
 import { rocket } from 'ionicons/icons';
 import Parent from "../components/Parent";
 
 const Future: React.FC = () => {
   try {
-  AndroidFullScreen.immersiveMode(()=>{console.log(":)")}, console.log(":("))
+    // AndroidFullScreen.immersiveMode(()=>{console.log(":)")}, console.log(":(")) 
   } catch {
     
   }
@@ -38,7 +37,7 @@ const Future: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         {/* <FutureParent /> */}
-        <Parent url={"https://ll.thespacedevs.com/2.2.0/launch/upcoming/?format=json&limit=100"} dataName={"dataFuture"} dateName={"dataFutureDate"} />
+        <Parent url={"https://ll.thespacedevs.com/2.2.0/launch/upcoming/?format=json&limit=100"} dataName={"dataFuture"} dataDate={"dataFutureDate"} />
         {/* <IonButton onClick={ () => {}>Click Me!</IonButton> */}
       </IonContent>
     </IonPage>

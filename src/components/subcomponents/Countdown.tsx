@@ -14,7 +14,7 @@ export default function Countdown(props: any) {
     return () => clearInterval(intervalId);
   }, []);
 
-  function timee(launchTime) {
+  function timee(launchTime : any) {
     let diff = Math.abs( Date.now() - launchTime);
    
 
@@ -26,34 +26,17 @@ export default function Countdown(props: any) {
     diff = diff % 60000;
     let sec = Math.trunc(diff / 1000);
 
-    if (`${days}`.length == 1) {
-      days = `0${days}`;
-    }
-
-    if (`${hours}`.length == 1) {
-      hours = `0${hours}`;
-    }
-
-    if (`${min}`.length == 1) {
-      min = `0${min}`;
-    }
-
-    if (`${sec}`.length == 1) {
-      sec = `0${sec}`;
-    }
-
-    days += "";
-    hours += "";
-    min += "";
-    sec += "";
-
- //   console.log(`${days}:${hours}:${min}:${sec}`);
+    let daysStr = `${days}`.padStart(2,'0');
+    let hoursStr = `${hours}`.padStart(2,'0');
+    let minStr = `${min}`.padStart(2,'0');
+    let secStr =`${sec}`.padStart(2,'0');
 
     if ( Date.now() - launchTime < 0)
-      return `T-${days}:${hours}:${min}:${sec}`;
-    else 
-      return `T+${days}:${hours}:${min}:${sec}`;
+      return `T-${daysStr}:${hoursStr}:${minStr}:${secStr}`;
+    else
+      return `T+${daysStr}:${hoursStr}:${minStr}:${secStr}`;
   }
+
   return <p style={{ fontSize: "3em" }}>{timeLeft}</p>;
 
 

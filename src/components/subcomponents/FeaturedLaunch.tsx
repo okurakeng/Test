@@ -16,7 +16,7 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import "./Launch.css";
+import "../Launch.css";
 import LaunchInfo from "./LaunchInfo";
 import CoreInfo from "./CoreInfo";
 import StatusInfo from "./StatusInfo";

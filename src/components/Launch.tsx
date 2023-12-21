@@ -18,13 +18,13 @@ import {
 } from "@ionic/react";
 import { useEffect, useState } from "react";
 import "./Launch.css";
-import LaunchInfo from "./LaunchInfo";
-import LocationInfo from "./LocationInfo";
-import MissionInfo from "./MissonInfo";
-import CoreInfo from "./CoreInfo";
-import StatusInfo from "./StatusInfo";
-import FeaturedLaunches from "./FeaturedLaunch";
-import Email from "./Email";
+import LaunchInfo from "./subcomponents/LaunchInfo";
+import LocationInfo from "./subcomponents/LocationInfo";
+import MissionInfo from "./subcomponents/MissonInfo";
+import CoreInfo from "./subcomponents/CoreInfo";
+import StatusInfo from "./subcomponents/StatusInfo";
+import FeaturedLaunches from "./subcomponents/FeaturedLaunch";
+import Email from "./subcomponents/Email";
 import { Haptics, ImpactStyle } from '@capacitor/haptics';
 
 export default function LaunchTimeline(props: any) {

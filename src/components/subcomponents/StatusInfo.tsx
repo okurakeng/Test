@@ -1,5 +1,5 @@
 import { IonIcon, IonItem, IonLabel } from "@ionic/react";
-import "./Launch.css";
+import "../Launch.css";
 import { ellipse } from "ionicons/icons";
 
 export default function StatusInfo(props: any) {
@@ -16,7 +16,7 @@ export default function StatusInfo(props: any) {
         color = "primary";
         break;
       case 3: // Success
-        color = "success";
+        color = "succesds";
         break;
       case 4: // Fail
         color = "danger";

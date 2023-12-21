@@ -1,5 +1,5 @@
 import { IonButton, IonItem, IonLabel } from "@ionic/react";
-import "./Launch.css";
+import "../Launch.css";
 
 export default function Email(props: any) {
   const { launch } = props;
@@ -62,7 +62,7 @@ export default function Email(props: any) {
     <IonItem>
       <IonButton
         onClick={() => {
-          try {
+          try { 
             cordova.plugins.email.open({
               app: "outlook",
               subject: `Next Launch: ${launch.name}`,

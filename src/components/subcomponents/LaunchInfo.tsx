@@ -1,5 +1,5 @@
 import { IonItem, IonLabel } from "@ionic/react";
-import "./Launch.css";
+import "../Launch.css";
 
 export default function LaunchInfo(props: any) {
   const { launch } = props;
