@@ -25,12 +25,22 @@ import MissionInfo from "./MissonInfo";
 import { useState } from "react";
 import Countdown from "./Countdown";
 import Email from "./Email";
+import LaunchModal from "./LaunchModal";
 
 export default function FeaturedLaunches(props: any) {
   const [isOpen, setIsOpen] = useState(false);
   const [id, setID] = useState(0);
   const { launch } = props;
-  console.log(launch.window_start)
+
+  const openModal = () => {
+    setID(launch.id);
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    console.log("test");
+    setIsOpen(false);
+  };
 
   return (
     <IonGrid className="rows">
@@ -39,8 +49,7 @@ export default function FeaturedLaunches(props: any) {
           <IonItem className="rows">
             <IonCard
               onClick={() => {
-                setID(launch.id);
-                setIsOpen(true);
+                openModal();
               }}
             >
               <img
@@ -58,30 +67,17 @@ export default function FeaturedLaunches(props: any) {
               <LaunchInfo launch={launch}></LaunchInfo>
               <IonItem>Click this tab for more info!</IonItem>
             </IonCard>
+            
             <IonModal isOpen={isOpen && launch.id == id}>
-              <IonHeader>
-                <IonToolbar>
-                  <IonTitle>Launch</IonTitle>
-                  <IonButtons slot="end">
-                    <IonButton onClick={() => setIsOpen(false)}>
-                      Close
-                    </IonButton>
-                  </IonButtons>
-                </IonToolbar>
-              </IonHeader>
-              <IonContent>
-                <IonCard>
-                  <CoreInfo launch={launch}></CoreInfo>
-                  <LaunchInfo launch={launch}></LaunchInfo>
-                  <StatusInfo launch={launch}></StatusInfo>
-                  <MissionInfo launch={launch}></MissionInfo>
-                  <LocationInfo launch={launch}></LocationInfo>
-                  <Email launch={launch}></Email>
-                </IonCard>
-              </IonContent>
+              <LaunchModal
+                launch={launch}
+                closeModal={closeModal}
+              ></LaunchModal>
             </IonModal>
           </IonItem>
         </IonCol>
+
+
         <IonCol>
           <Countdown launchDate={launch.window_start}></Countdown>
         </IonCol>

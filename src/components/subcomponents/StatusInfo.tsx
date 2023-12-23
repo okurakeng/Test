@@ -16,7 +16,7 @@ export default function StatusInfo(props: any) {
         color = "primary";
         break;
       case 3: // Success
-        color = "succesds";
+        color = "success";
         break;
       case 4: // Fail
         color = "danger";
@@ -39,7 +39,7 @@ export default function StatusInfo(props: any) {
     }
     console.log(color)
     if (launch.status.id == 8 || launch.status.id == 2) {
-      return <></>;
+      return <></>; // tbd or tbc
     } else {
       return (
         <IonItem>
@@ -48,7 +48,7 @@ export default function StatusInfo(props: any) {
             <p className="ion-text-wrap">
               <b>Launch Status:</b>{" "}
               <IonIcon color={color} icon={ellipse}></IonIcon>{" "}
-              <span>{launch.status.name}</span>
+              <span><abbr title={launch.status.description}>{launch.status.name}</abbr></span>
             </p>
           </IonLabel>
         </IonItem>

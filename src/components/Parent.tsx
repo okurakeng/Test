@@ -171,5 +171,5 @@ export default function Parent(props: any) {
       });
   };
 
-  return <Launch launches={data} date={lastUpdate} />;
+  return <Launch launches={data} date={lastUpdate} dataName={dataName}  />;
 }
