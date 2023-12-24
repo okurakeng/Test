@@ -1,7 +1,9 @@
-import { IonGrid, IonItem, IonProgressBar } from "@ionic/react";
+import { IonGrid, IonItem, IonProgressBar, IonSearchbar } from "@ionic/react";
 import "./Launch.css";
 import FeaturedLaunches from "./subcomponents/FeaturedLaunch";
 import LaunchGridRow from "./subcomponents/LaunchGridRow";
+import Example from "./subcomponents/Example";
+import { useState } from "react";
 
 export default function LaunchTimeline(props: any) {
   let loadingImages = [
@@ -25,6 +27,16 @@ export default function LaunchTimeline(props: any) {
       let featuredLaunch = launches[0];
       let displayedLaunches = launches.slice(1);
 
+      let [results, setResults] = useState([...displayedLaunches]);
+
+      const handleInput = (ev: Event) => {
+        let query = '';
+        const target = ev.target as HTMLIonSearchbarElement;
+        if (target) query = target.value!.toLowerCase();
+        
+        setResults(displayedLaunches.filter((d: any) => d.name.toLowerCase().indexOf(query) > -1 ||  d.launch_service_provider.name.toLowerCase().indexOf(query) > -1  ||  d.pad.name.toLowerCase().indexOf(query) > -1 || d.pad.location.name.toLowerCase().indexOf(query) > -1  ));
+      };
+
       return (
         <>
           <IonGrid>
@@ -38,7 +50,10 @@ export default function LaunchTimeline(props: any) {
               <h1>Other Launches:</h1>
             </IonItem>
 
-            {displayedLaunches.map((launch: any, index: number) => {
+            
+            <IonSearchbar debounce={1} onIonInput={(ev) => handleInput(ev)}></IonSearchbar>
+
+            {results.map((launch: any, index: number) => {
               return (
                 <LaunchGridRow launch={launch} key={index}></LaunchGridRow>
               );
