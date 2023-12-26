@@ -18,13 +18,8 @@ import {
 } from "@ionic/react";
 import "../Launch.css";
 import LaunchInfo from "./LaunchInfo";
-import CoreInfo from "./CoreInfo";
-import StatusInfo from "./StatusInfo";
-import LocationInfo from "./LocationInfo";
-import MissionInfo from "./MissonInfo";
 import { useState } from "react";
 import Countdown from "./Countdown";
-import Email from "./Email";
 import LaunchModal from "./LaunchModal";
 
 export default function FeaturedLaunches(props: any) {
@@ -79,7 +74,7 @@ export default function FeaturedLaunches(props: any) {
 
 
         <IonCol>
-          <Countdown launchDate={launch.window_start}></Countdown>
+          <Countdown launchDate={launch.net}></Countdown>
         </IonCol>
       </IonRow>
     </IonGrid>
