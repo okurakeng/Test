@@ -29,7 +29,7 @@ export default function Parent(props: any) {
         <StatusInfo launch={launch}></StatusInfo>
         <MissionInfo launch={launch}></MissionInfo>
         <LocationInfo launch={launch}></LocationInfo>
-        <Email launch={launch}></Email>
+        <Email launch={launch}></Email>     
       </IonCard>
     </IonContent>
   </>)

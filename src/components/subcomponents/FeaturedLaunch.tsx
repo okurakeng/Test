@@ -1,20 +1,12 @@
 import {
-  IonButton,
-  IonButtons,
   IonCard,
   IonCardHeader,
-  IonCardSubtitle,
   IonCardTitle,
   IonCol,
-  IonContent,
   IonGrid,
-  IonHeader,
   IonItem,
-  IonLabel,
   IonModal,
-  IonRow,
-  IonTitle,
-  IonToolbar,
+  IonRow
 } from "@ionic/react";
 import "../Launch.css";
 import LaunchInfo from "./LaunchInfo";

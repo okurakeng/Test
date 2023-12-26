@@ -2,7 +2,6 @@ import { IonGrid, IonItem, IonProgressBar, IonSearchbar } from "@ionic/react";
 import "./Launch.css";
 import FeaturedLaunches from "./subcomponents/FeaturedLaunch";
 import LaunchGridRow from "./subcomponents/LaunchGridRow";
-import Example from "./subcomponents/Example";
 import { useState } from "react";
 
 export default function LaunchTimeline(props: any) {

@@ -3,7 +3,6 @@ import {
   IonLabel
 } from "@ionic/react";
 import "../Launch.css";
-
 export default function MissionInfo(props: any) {
   const { launch } = props;
   // agency error handling
@@ -16,8 +15,10 @@ export default function MissionInfo(props: any) {
       );
     } else {
       let list = "";
+      console.log(agencies)
       for (let agency of agencies) {
-        list = agency.name + " ";
+        console.log(agency.name)
+        list += agency.name + "; ";
       }
 
       return (
@@ -57,6 +58,7 @@ export default function MissionInfo(props: any) {
           </span>
         </p>
         <p className="ion-text-wrap">{getAgency(launch.mission ? launch.mission.agencies : [])}</p>
+   
       </IonLabel>
     </IonItem>
   );

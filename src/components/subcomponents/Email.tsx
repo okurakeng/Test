@@ -1,4 +1,4 @@
-import { IonButton, IonIcon, IonItem, IonLabel } from "@ionic/react";
+import { IonButton, IonIcon, IonItem } from "@ionic/react";
 import "../Launch.css";
 import { repeatedFunctions } from "../../hooks/repeatedFunctions";
 import { mail } from 'ionicons/icons';
@@ -8,7 +8,7 @@ export default function Email(props: any) {
 
   const { dateGen } = repeatedFunctions();
 
-  console.log(launch)
+  // console.log(launch)
   let body = `Hey! Check it out. ${
     launch.mission.name
   } is launching soon!\nLaunch Time: ${dateGen(
