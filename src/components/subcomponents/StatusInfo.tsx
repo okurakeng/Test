@@ -37,10 +37,28 @@ export default function StatusInfo(props: any) {
         color = "medium";
         break;
     }
-    console.log(color)
     if (launch.status.id == 8 || launch.status.id == 2) {
       return <></>; // tbd or tbc
-    } else {
+    } else if (launch.status.id == 4 || launch.status.id == 7) {
+      return (
+        <IonItem>
+          <IonLabel>
+            <h2>Launch Status:</h2>
+            <p className="ion-text-wrap">
+              <b>Launch Status:</b>{" "}
+              <IonIcon color={color} icon={ellipse}></IonIcon>{" "}
+              <span><abbr title={launch.status.description}>{launch.status.name}</abbr></span>
+            </p>
+
+            <p className="ion-text-wrap">
+              <b>Failure reason:</b>{" "}
+              <span>{launch.failreason}</span>
+            </p>
+          </IonLabel>
+        </IonItem>
+      );
+    }
+    else {
       return (
         <IonItem>
           <IonLabel>

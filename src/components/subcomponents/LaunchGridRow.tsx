@@ -1,4 +1,4 @@
-import { IonButton, IonButtons, IonCard, IonContent, IonHeader, IonItem, IonLabel, IonModal, IonTitle, IonToolbar } from "@ionic/react";
+import { IonButton,IonItem, IonLabel, IonModal } from "@ionic/react";
 import React, { useState } from "react";
 import LaunchModal from "./LaunchModal";
 
@@ -13,7 +13,6 @@ export default function Parent(props: any) {
   };
 
   const closeModal = () => {
-    console.log("test")
     setIsOpen(false);
   };
 

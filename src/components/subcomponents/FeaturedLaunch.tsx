@@ -51,7 +51,7 @@ export default function FeaturedLaunches(props: any) {
                     : launch.name.substring(launch.name.indexOf("|") + 1)}
                 </IonCardTitle>
               </IonCardHeader>
-              <LaunchInfo launch={launch}></LaunchInfo>
+              <LaunchInfo launch={launch} showButton={false}></LaunchInfo>
               <IonItem>Click this tab for more info!</IonItem>
             </IonCard>
             
@@ -66,7 +66,7 @@ export default function FeaturedLaunches(props: any) {
 
 
         <IonCol>
-          <Countdown launchDate={launch.net}></Countdown>
+          <Countdown launchDate={launch.net} inline={false}></Countdown>
         </IonCol>
       </IonRow>
     </IonGrid>

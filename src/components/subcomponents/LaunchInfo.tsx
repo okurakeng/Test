@@ -5,9 +5,9 @@ import Agency from "./Agency";
 import Rocket from "./Rocket";
 
 export default function LaunchInfo(props: any) {
-  const { launch } = props;
+  const { launch, showButton } = props;
 
-  const { dateGen } = repeatedFunctions();
+  const { dateGenUTC, dateGen } = repeatedFunctions();
 
   return (
     <IonItem>
@@ -15,8 +15,14 @@ export default function LaunchInfo(props: any) {
         <h2>Launch Info:</h2>
         <p className="ion-text-wrap">
           <b>Launch time:</b>{" "}
-          <span><abbr title={launch.net_precision.description}>{dateGen(launch.net, launch.net_precision, true)} </abbr></span>
+          <span><abbr title={launch.net_precision.description}>{dateGenUTC(launch.net, launch.net_precision, true)}</abbr></span>
         </p>
+
+        <p className="ion-text-wrap">
+          <b>Local Launch time:</b>{" "}
+          <span>Locally: {dateGen(launch.net, launch.net_precision, true)}</span>
+        </p>
+
         <p className="ion-text-wrap">
           <b>Launch Service Provider:</b>{" "}
           <span>{launch.launch_service_provider.name}</span>
@@ -25,8 +31,8 @@ export default function LaunchInfo(props: any) {
           <b>Launch Vehicle:</b>{" "}
           <span>{launch.rocket.configuration.full_name}</span>
         </p>
-        <Agency url={launch.launch_service_provider.url} ></Agency>
-        <Rocket url={launch.rocket.configuration.url}></Rocket>
+        <Agency url={launch.launch_service_provider.url} showButton={showButton}></Agency>
+        <Rocket url={launch.rocket.configuration.url} showButton={showButton}></Rocket>
       </IonLabel>
 
      

@@ -12,21 +12,22 @@ import {
   IonToolbar,
 } from "@ionic/react";
 export default function Agency(props: any) {
-  const { url } = props;
+  const { url, showButton } = props;
 
-  const [data, setData] = useState({});
+  const [data, setData] = useState(Object);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     // let url = "";
-    getAgency(url);
+    if (showButton)
+      getAgency(url);
   }, []);
 
   const getAgency = (url: string) => {
     console.log("hey....api contacted");
 
     axios
-      .get("https://lldev"+url.substring(url.indexOf(".thespacedevs")))
+      .get("https://lldev" + url.substring(url.indexOf(".thespacedevs")))
       .then((response) => {
         setData(response.data);
       })
@@ -36,57 +37,62 @@ export default function Agency(props: any) {
   };
 
   function displayAgency() {
+    if (!showButton) return <></>;
     // const { data } = props;
     // console.log(data)
     if (data) {
       return (
         <>
-        <IonButton onClick={() => {
-                    setIsOpen(true)
-                  }}>More Info on Agency</IonButton>
-        <IonModal isOpen={isOpen}>
-          <IonHeader>
-            <IonToolbar>
-              <IonTitle>Agency</IonTitle>
-              <IonButtons slot="end">
-                <IonButton
-                  onClick={() => {
-                    setIsOpen(false)
-                  }}
-                >
-                  Close
-                </IonButton>
-              </IonButtons>
-            </IonToolbar>
-          </IonHeader>
-          <IonContent>
-            <IonItem>
-              <IonLabel>
-                <img alt="Img missing " src={data.logo_url} />
-                <h2>Agency Info:</h2>
+          <IonButton
+            onClick={() => {
+              setIsOpen(true);
+            }}
+          >
+            More Info on Agency
+          </IonButton>
+          <IonModal isOpen={isOpen}>
+            <IonHeader>
+              <IonToolbar>
+                <IonTitle>Agency</IonTitle>
+                <IonButtons slot="end">
+                  <IonButton
+                    onClick={() => {
+                      setIsOpen(false);
+                    }}
+                  >
+                    Close
+                  </IonButton>
+                </IonButtons>
+              </IonToolbar>
+            </IonHeader>
+            <IonContent>
+              <IonItem>
+                <IonLabel>
+                  <img alt="Img missing " src={data.logo_url} />
+                  <h2>Agency Info:</h2>
 
-                <p className="ion-text-wrap">
-                  <b>Agency Name:</b>{" "}
-                  <span>
-                    {data.name} ({data.abbrev})
-                  </span>
-                </p>
+                  <p className="ion-text-wrap">
+                    <b>Agency Name:</b>{" "}
+                    <span>
+                      {data.name} ({data.abbrev})
+                    </span>
+                  </p>
 
-                <p className="ion-text-wrap">
-                  <b>Founded:</b> <span>{data.founding_year}</span>
-                </p>
+                  <p className="ion-text-wrap">
+                    <b>Founded:</b> <span>{data.founding_year}</span>
+                  </p>
 
-                <p className="ion-text-wrap">
-                  <b>Leadership:</b> <span>{data.administrator}</span>
-                </p>
+                  <p className="ion-text-wrap">
+                    <b>Leadership:</b> <span>{data.administrator}</span>
+                  </p>
 
-                <p className="ion-text-wrap">
-                  <b>Description:</b> <span>{data.description}</span>
-                </p>
-              </IonLabel>
-            </IonItem>
-          </IonContent>
-        </IonModal>
+                  <p className="ion-text-wrap">
+                    <b>Description:</b> <span>{data.description}</span>
+                  </p>
+                </IonLabel>
+              </IonItem>
+            </IonContent>
+          </IonModal>
         </>
       );
     } else {

@@ -25,11 +25,12 @@ export default function Parent(props: any) {
     <IonContent>
       <IonCard>
         <CoreInfo launch={launch}></CoreInfo>
-        <LaunchInfo launch={launch}></LaunchInfo>
+        <LaunchInfo launch={launch} showButton={true}></LaunchInfo>
         <StatusInfo launch={launch}></StatusInfo>
         <MissionInfo launch={launch}></MissionInfo>
         <LocationInfo launch={launch}></LocationInfo>
-        <Email launch={launch}></Email>     
+        <Email launch={launch}></Email>
+        <IonButton onClick={() => console.log(launch)}>Display Launch in Console</IonButton>
       </IonCard>
     </IonContent>
   </>)

@@ -12,14 +12,14 @@ import {
   IonToolbar,
 } from "@ionic/react";
 export default function Rocket(props: any) {
-  const { url } = props;
+  const { url, showButton } = props;
 
-  const [data, setData] = useState({});
+  const [data, setData] = useState(Object);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    // let url = "";
-    getAgency(url);
+    if (showButton)
+      getAgency(url);
   }, []);
 
   const getAgency = (url: string) => {
@@ -36,6 +36,8 @@ export default function Rocket(props: any) {
   };
 
   function displayAgency() {
+    if (!showButton)
+      return <></>
     // const { data } = props;
     // console.log(data)
     if (data) {

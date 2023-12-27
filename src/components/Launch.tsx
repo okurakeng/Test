@@ -3,6 +3,7 @@ import "./Launch.css";
 import FeaturedLaunches from "./subcomponents/FeaturedLaunch";
 import LaunchGridRow from "./subcomponents/LaunchGridRow";
 import { useState } from "react";
+import { repeatedFunctions } from "../hooks/repeatedFunctions";
 
 export default function LaunchTimeline(props: any) {
   let loadingImages = [
@@ -13,15 +14,39 @@ export default function LaunchTimeline(props: any) {
     "https://cdn.dribbble.com/users/160117/screenshots/3197970/main.gif",
   ];
 
+  const { monthAsWordUTC } = repeatedFunctions();
+
+  function hasMonthChanged(currentDate: any, previousDate: any) {
+    if (currentDate.net_precision && previousDate.net_precision)
+      if (currentDate.net_precision.id >= 8)
+        return (currentDate.net_precision.id !== previousDate.net_precision.id);
+      else 
+        return (
+          new Date(currentDate.net).getUTCMonth() !==
+          new Date(previousDate.net).getUTCMonth() 
+        ) ;
+
+    else 
+      return (
+        new Date(currentDate.net).getUTCMonth() !==
+        new Date(previousDate.net).getUTCMonth() 
+      );
+  }
+
   const displayLaunches = (props: any) => {
     let { launches, date, dataName } = props;
 
     if (launches.length > 0) {
-      if (dataName != "dataPast") { // filters out any launches that alr happened; success, failure, or partial
-        launches = launches.filter( (val : any) => {
-          return !(val.status.id == 7 || val.status.id == 4 || val.status.id == 3)
-        })
-      } 
+      if (dataName != "dataPast") {
+        // filters out any launches that alr happened; success, failure, or partial
+        launches = launches.filter((val: any) => {
+          return !(
+            val.status.id == 7 ||
+            val.status.id == 4 ||
+            val.status.id == 3
+          );
+        });
+      }
 
       let featuredLaunch = launches[0];
       let displayedLaunches = launches.slice(1);
@@ -29,11 +54,23 @@ export default function LaunchTimeline(props: any) {
       let [results, setResults] = useState([...displayedLaunches]);
 
       const handleInput = (ev: Event) => {
-        let query = '';
+        let query = "";
         const target = ev.target as HTMLIonSearchbarElement;
         if (target) query = target.value!.toLowerCase();
-        
-        setResults(displayedLaunches.filter((d: any) => d.name.toLowerCase().indexOf(query) > -1 ||  d.launch_service_provider.name.toLowerCase().indexOf(query) > -1  ||  d.pad.name.toLowerCase().indexOf(query) > -1 || d.pad.location.name.toLowerCase().indexOf(query) > -1  ));
+
+        setResults(
+          displayedLaunches.filter(
+            (d: any) =>
+              d.name.toLowerCase().indexOf(query) > -1 ||
+              d.launch_service_provider.name.toLowerCase().indexOf(query) >
+                -1 ||
+              d.pad.name.toLowerCase().indexOf(query) > -1 ||
+              d.pad.location.name.toLowerCase().indexOf(query) > -1
+             || monthAsWordUTC(d.net).toLowerCase().indexOf(query) > -1 
+             || d.status.abbrev.toLowerCase().indexOf(query) > -1 
+
+          )
+        );
       };
 
       return (
@@ -49,13 +86,44 @@ export default function LaunchTimeline(props: any) {
               <h1>Other Launches:</h1>
             </IonItem>
 
-            
-            <IonSearchbar debounce={1} onIonInput={(ev) => handleInput(ev)}></IonSearchbar>
+            <IonSearchbar
+              debounce={1}
+              onIonInput={(ev) => handleInput(ev)}
+            ></IonSearchbar>
 
-            {results.map((launch: any, index: number) => {
-              return (
-                <LaunchGridRow launch={launch} key={index}></LaunchGridRow>
-              );
+            {results.map((launch: any, index: number, array) => {
+              const isFirstElement = index === 0;
+              const previousDate = isFirstElement ? null : array[index - 1];
+              const monthChanged = isFirstElement
+                ? true
+                : hasMonthChanged(launch, previousDate);
+
+              if (monthChanged) {
+                let monthInWords =
+                  new Date(launch.net).toLocaleString("en-US", {
+                    month: "long",
+                    timeZone: "UTC",
+                  }) +
+                  " " +
+                  new Date(launch.net).getUTCFullYear();
+
+                if (launch.net_precision)
+                  if (launch.net_precision.id >= 8)
+                    monthInWords = launch.net_precision.name + " (~" + monthAsWordUTC(launch.net) + " " + new Date(launch.net).getUTCFullYear() +")";
+
+                return (
+                  <div key={launch.id}>
+                    <IonItem className="rows" style={{ fontWeight: 'bold' }}>
+                      {monthInWords}
+                    </IonItem>
+                    <LaunchGridRow launch={launch} ></LaunchGridRow>
+                  </div>
+                );
+              } else {
+                return (
+                  <LaunchGridRow launch={launch} key={launch.id}></LaunchGridRow>
+                );
+              }
             })}
 
             <IonItem className="rows">

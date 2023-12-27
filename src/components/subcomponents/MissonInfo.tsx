@@ -15,9 +15,9 @@ export default function MissionInfo(props: any) {
       );
     } else {
       let list = "";
-      console.log(agencies)
+     // console.log(agencies)
       for (let agency of agencies) {
-        console.log(agency.name)
+      //  console.log(agency.name)
         list += agency.name + "; ";
       }
 

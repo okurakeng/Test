@@ -5,11 +5,12 @@ import {
 } from "@ionic/react";
 import "../Launch.css";
 import { repeatedFunctions } from "../../hooks/repeatedFunctions";
+import Countdown from "./Countdown";
 
 export default function CoreInfo(props: any) {
   const { launch } = props;
 
-  const { dateGen } = repeatedFunctions();
+  const { dateGenUTC,dateGen } = repeatedFunctions();
   return (
     <>
       <img alt="Img missing " src={launch.image} />
@@ -21,7 +22,7 @@ export default function CoreInfo(props: any) {
         </IonCardTitle>
         <IonCardSubtitle>
           {launch.rocket.configuration.name} |{" "}
-          {dateGen(launch.net, launch.net_precision, false)}
+          {dateGenUTC(launch.net, launch.net_precision, false)} | <Countdown launchDate={launch.net} inline={true}></Countdown>
         </IonCardSubtitle>
       </IonCardHeader>{" "}
     </>

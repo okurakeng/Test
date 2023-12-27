@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 export default function Countdown(props: any) {
   const [timeLeft, setTimeLeft] = useState("");
-  const {launchDate} = props;
+  const {launchDate, inline} = props;
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -37,7 +37,16 @@ export default function Countdown(props: any) {
       return `T+${daysStr}:${hoursStr}:${minStr}:${secStr}`;
   }
 
-  return <p style={{ fontSize: "3em" }}>{timeLeft}</p>;
+  function returnCountdown() {
+    
+    if (inline) {
+      return <>{timeLeft}</>
+    } else {
+      return <p style={{ fontSize: "3em" }}>{timeLeft}</p>;
 
+    }
+   }
+
+  return returnCountdown();
 
 };

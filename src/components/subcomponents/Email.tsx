@@ -6,12 +6,12 @@ import { mail } from 'ionicons/icons';
 export default function Email(props: any) {
   const { launch } = props;
 
-  const { dateGen } = repeatedFunctions();
+  const { dateGenUTC, dateGen } = repeatedFunctions();
 
   // console.log(launch)
   let body = `Hey! Check it out. ${
     launch.mission.name
-  } is launching soon!\nLaunch Time: ${dateGen(
+  } is launching soon!\nLaunch Time: ${dateGenUTC(
     launch.net,
     launch.net_precision,
     true
