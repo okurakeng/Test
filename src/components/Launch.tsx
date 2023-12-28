@@ -137,7 +137,7 @@ export default function LaunchTimeline(props: any) {
                   See their website for more info
                 </a>
                 . Some data is inaccurate due to using the free dev API. Date
-                last updated {date.toString()}
+                last updated {date ? date.toString(): "Error getting date"}
               </p>
             </IonItem>
           </IonGrid>
