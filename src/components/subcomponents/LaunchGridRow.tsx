@@ -1,6 +1,7 @@
 import { IonButton,IonItem, IonLabel, IonModal } from "@ionic/react";
 import React, { useState } from "react";
 import LaunchModal from "./LaunchModal";
+import CustomImage from "./CustomImage";
 
 export default function Parent(props: any) {
   const { launch } = props;
@@ -18,11 +19,12 @@ export default function Parent(props: any) {
 
 
   return (<IonItem className="rows">
-  <img
-    className="specialImage1"
+    <CustomImage className={"specialImage1"} image_url={launch.image} />
+  {/* <img
+    className=""
     alt="Img missing "
     src={launch.image}
-  />
+  /> */}
   <IonLabel>
     {" "}
     |{" "}

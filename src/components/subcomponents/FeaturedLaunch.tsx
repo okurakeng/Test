@@ -13,6 +13,7 @@ import LaunchInfo from "./modalcomponents/LaunchInfo";
 import { useState } from "react";
 import Countdown from "./Countdown";
 import LaunchModal from "./LaunchModal";
+import CustomImage from "./CustomImage";
 
 export default function FeaturedLaunches(props: any) {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,11 +40,12 @@ export default function FeaturedLaunches(props: any) {
                 openModal();
               }}
             >
-              <img
+              <CustomImage className={"specialImage"} image_url={launch.image} />
+              {/* <img
                 className="specialImage"
                 alt="Img missing "
-                src={launch.image}
-              />
+                src={}
+              /> */}
               <IonCardHeader>
                 <IonCardTitle>
                   {launch.mission

@@ -6,6 +6,7 @@ import {
 import "../../Launch.css";
 import { repeatedFunctions } from "../../../hooks/repeatedFunctions";
 import Countdown from "../Countdown";
+import CustomImage from "../CustomImage";
 
 export default function CoreInfo(props: any) {
   const { launch } = props;
@@ -13,7 +14,9 @@ export default function CoreInfo(props: any) {
   const { dateGenUTC,dateGen } = repeatedFunctions();
   return (
     <>
-      <img alt="Img missing " src={launch.image} />
+      <CustomImage className={""} image_url={launch.image} />
+
+      {/* <img alt="Img missing " src={launch.image} /> */}
       <IonCardHeader>
         <IonCardTitle>
           {launch.mission

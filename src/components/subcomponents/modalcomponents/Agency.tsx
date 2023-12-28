@@ -11,6 +11,7 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
+import CustomImage from "../CustomImage";
 export default function Agency(props: any) {
   const { url, showButton } = props;
 
@@ -68,7 +69,8 @@ export default function Agency(props: any) {
             <IonContent>
               <IonItem>
                 <IonLabel>
-                  <img alt="Img missing " src={data.logo_url} />
+                <CustomImage className={""} image_url={data.logo_url} />
+                  {/* <img alt="Img missing " src={data.logo_url} /> */}
                   <h2>Agency Info:</h2>
 
                   <p className="ion-text-wrap">

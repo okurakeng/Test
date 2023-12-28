@@ -4,6 +4,7 @@ import {
   IonLabel
 } from "@ionic/react";
 import "../../Launch.css";
+import CustomImage from "../CustomImage";
 
 export default function LocationInfo(props: any) {
   const { launch } = props;
@@ -18,7 +19,8 @@ export default function LocationInfo(props: any) {
         <p className="ion-text-wrap">
           <b>Location:</b> <span>{launch.pad.location.name}</span>
         </p>
-        <img src={launch.pad.map_image} />
+        <CustomImage className={""} image_url={launch.pad.map_image} />
+        {/* <img src={launch.pad.map_image} /> */}
       </IonLabel>
     </IonItem>
   );
