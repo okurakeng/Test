@@ -19,8 +19,8 @@ export default function LaunchInfo(props: any) {
         </p>
 
         <p className="ion-text-wrap">
-          <b>Local Launch time:</b>{" "}
-          <span>Locally: {dateGen(launch.net, launch.net_precision, true)}</span>
+          <b>Your Local Launch time:</b>{" "}
+          <span>{dateGen(launch.net, launch.net_precision, true)}</span>
         </p>
 
         <p className="ion-text-wrap">

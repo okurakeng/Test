@@ -11,6 +11,7 @@ export default function Parent(props: any) {
   const [lastUpdate, setDate] = useState("");
 
   useEffect(() => {
+    console.log("Rendering...")
     if (typeof localforage != "undefined") {
       console.log("Working"); // pass test
 
@@ -62,7 +63,7 @@ export default function Parent(props: any) {
       // error with local forage
       console.log("Localforage error");
     }
-  }, []);
+  }, [url]);
 
   const getAllLaunches = (url: string) => {
     console.log("hey....api contacted");
