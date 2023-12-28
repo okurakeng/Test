@@ -1,6 +1,6 @@
 import { IonItem, IonLabel } from "@ionic/react";
-import "../Launch.css";
-import { repeatedFunctions } from "../../hooks/repeatedFunctions";
+import "../../Launch.css";
+import { repeatedFunctions } from "../../../hooks/repeatedFunctions";
 import Agency from "./Agency";
 import Rocket from "./Rocket";
 
@@ -31,8 +31,13 @@ export default function LaunchInfo(props: any) {
           <b>Launch Vehicle:</b>{" "}
           <span>{launch.rocket.configuration.full_name}</span>
         </p>
-        <Agency url={launch.launch_service_provider.url} showButton={showButton}></Agency>
-        <Rocket url={launch.rocket.configuration.url} showButton={showButton}></Rocket>
+        
+        <div className="ion-text-wrap">
+          <Agency url={launch.launch_service_provider.url} showButton={showButton}></Agency>
+        </div>
+        <div className="ion-text-wrap">
+          <Rocket url={launch.rocket.configuration.url} showButton={showButton}></Rocket>
+        </div>
       </IonLabel>
 
      

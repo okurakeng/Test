@@ -1,6 +1,6 @@
 import { IonButton, IonIcon, IonItem } from "@ionic/react";
-import "../Launch.css";
-import { repeatedFunctions } from "../../hooks/repeatedFunctions";
+import "../../Launch.css";
+import { repeatedFunctions } from "../../../hooks/repeatedFunctions";
 import { mail } from 'ionicons/icons';
 
 export default function Email(props: any) {

@@ -3,9 +3,9 @@ import {
   IonCardSubtitle,
   IonCardTitle,
 } from "@ionic/react";
-import "../Launch.css";
-import { repeatedFunctions } from "../../hooks/repeatedFunctions";
-import Countdown from "./Countdown";
+import "../../Launch.css";
+import { repeatedFunctions } from "../../../hooks/repeatedFunctions";
+import Countdown from "../Countdown";
 
 export default function CoreInfo(props: any) {
   const { launch } = props;

@@ -1,10 +1,10 @@
 import { IonButton, IonButtons, IonCard, IonContent, IonHeader, IonTitle, IonToolbar } from "@ionic/react";
-import LaunchInfo from "./LaunchInfo";
-import LocationInfo from "./LocationInfo";
-import MissionInfo from "./MissonInfo";
-import CoreInfo from "./CoreInfo";
-import StatusInfo from "./StatusInfo";
-import Email from "./Email";
+import LaunchInfo from "./modalcomponents/LaunchInfo";
+import LocationInfo from "./modalcomponents/LocationInfo";
+import MissionInfo from "./modalcomponents/MissonInfo";
+import CoreInfo from "./modalcomponents/CoreInfo";
+import StatusInfo from "./modalcomponents/StatusInfo";
+import Email from "./modalcomponents/Email";
 
 export default function Parent(props: any) {
   const { launch, closeModal} = props;

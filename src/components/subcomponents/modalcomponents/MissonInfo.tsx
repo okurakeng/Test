@@ -2,7 +2,7 @@ import {
   IonItem,
   IonLabel
 } from "@ionic/react";
-import "../Launch.css";
+import "../../Launch.css";
 export default function MissionInfo(props: any) {
   const { launch } = props;
   // agency error handling

@@ -1,5 +1,5 @@
 import { IonIcon, IonItem, IonLabel } from "@ionic/react";
-import "../Launch.css";
+import "../../Launch.css";
 import { ellipse } from "ionicons/icons";
 
 export default function StatusInfo(props: any) {

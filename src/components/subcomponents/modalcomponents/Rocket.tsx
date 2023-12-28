@@ -49,7 +49,7 @@ export default function Rocket(props: any) {
         <IonModal isOpen={isOpen}>
           <IonHeader>
             <IonToolbar>
-              <IonTitle>Agency</IonTitle>
+              <IonTitle>Rocket</IonTitle>
               <IonButtons slot="end">
                 <IonButton
                   onClick={() => {

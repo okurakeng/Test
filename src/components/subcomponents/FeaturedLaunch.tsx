@@ -9,7 +9,7 @@ import {
   IonRow
 } from "@ionic/react";
 import "../Launch.css";
-import LaunchInfo from "./LaunchInfo";
+import LaunchInfo from "./modalcomponents/LaunchInfo";
 import { useState } from "react";
 import Countdown from "./Countdown";
 import LaunchModal from "./LaunchModal";
