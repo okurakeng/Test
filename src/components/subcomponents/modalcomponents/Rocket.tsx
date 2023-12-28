@@ -65,7 +65,7 @@ export default function Rocket(props: any) {
           <IonContent>
             <IonItem>
               <IonLabel>
-              <CustomImage className={""} image_url={data.logo_url} />
+              <CustomImage className={""} image_url={data.image_url} />
 
                 {/* <img alt="Img missing " src={data.image_url} /> */}
                 <h2>Rocket Info:</h2>
