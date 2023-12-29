@@ -17,7 +17,6 @@ import StatusInfo from "./modalcomponents/StatusInfo";
 import Email from "./modalcomponents/Email";
 import PogoInfo from "./modalcomponents/PogoInfo";
 import AdditionalInfo from "./modalcomponents/AdditionalInfo";
-
 export default function Parent(props: any) {
   const { launch, closeModal } = props;
 

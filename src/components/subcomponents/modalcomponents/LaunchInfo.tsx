@@ -1,11 +1,33 @@
-import { IonItem, IonLabel } from "@ionic/react";
+import {
+  IonButton,
+  IonContent,
+  IonIcon,
+  IonItem,
+  IonLabel,
+  IonPopover,
+  useIonPopover,
+} from "@ionic/react";
 import "../../Launch.css";
 import { repeatedFunctions } from "../../../hooks/repeatedFunctions";
+import { helpCircleOutline   } from "ionicons/icons";
+
+
+// <ion-icon name="help-circle-outline"></ion-icon>
 
 export default function LaunchInfo(props: any) {
   const { launch } = props;
 
+  const Popover = () => (
+    <IonContent className="ion-padding">
+      {launch.net_precision.description}
+    </IonContent>
+  );
+
   const { dateGenUTC, dateGen } = repeatedFunctions();
+
+  const [present, dismiss] = useIonPopover(Popover, {
+    onDismiss: (data: any, role: string) => dismiss(data, role),
+  });
 
   return (
     <IonItem>
@@ -13,12 +35,20 @@ export default function LaunchInfo(props: any) {
         <h2>Launch Summary:</h2>
         <p className="ion-text-wrap">
           <b>Launch time:</b>{" "}
-          <span>
-            <abbr title={launch.net_precision.description}>
-              {dateGenUTC(launch.net, launch.net_precision, true)}
-            </abbr>
+          <span
+            id="click-trigger" style={{ borderBottom: '1px dotted ' }}
+            onClick={(e: any) =>
+              present({
+                event: e,
+                onDidDismiss: (e: CustomEvent) =>
+                  console.log(`Popover dismissed with role: ${e.detail.role}`),
+              })
+            }
+          >
+            {dateGenUTC(launch.net, launch.net_precision, true)} <IonIcon icon={helpCircleOutline}></IonIcon>
           </span>
         </p>
+
 
         <p className="ion-text-wrap">
           <b>Your Local Launch time:</b>{" "}

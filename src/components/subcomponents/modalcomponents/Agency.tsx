@@ -3,6 +3,9 @@ import axios from "axios";
 import {
   IonButton,
   IonButtons,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
   IonContent,
   IonHeader,
   IonItem,
@@ -16,7 +19,6 @@ export default function Agency(props: any) {
   const { url } = props;
 
   const [data, setData] = useState(Object);
-  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     // let url = "";
@@ -42,60 +44,44 @@ export default function Agency(props: any) {
     // console.log(data)
     if (data) {
       return (
-        <>
-          <IonButton
-            className="ion-text-wrap"
-            onClick={() => {
-              setIsOpen(true);
-            }}
-          >
-            More Info on {data.name}
-          </IonButton>
-          <IonModal isOpen={isOpen}>
-            <IonHeader>
-              <IonToolbar>
-                <IonTitle>{data.name}</IonTitle>
-                <IonButtons slot="end">
-                  <IonButton
-                    onClick={() => {
-                      setIsOpen(false);
-                    }}
-                  >
-                    Close
-                  </IonButton>
-                </IonButtons>
-              </IonToolbar>
-            </IonHeader>
-            <IonContent>
-              <IonItem>
-                <IonLabel>
-                  <CustomImage className={""} image_url={data.logo_url} />
-                  {/* <img alt="Img missing " src={data.logo_url} /> */}
-                  <h2>Agency Info:</h2>
+       
+              <IonCard>
+                <CustomImage className={""} image_url={data.logo_url} />
+                <IonCardHeader>
+                  <IonCardTitle>{data.name}</IonCardTitle>
+                </IonCardHeader>
+                <IonItem>
+                  <IonLabel>
+                    {/* <img alt="Img missing " src={data.logo_url} /> */}
+                    <h2>Agency Info:</h2>
 
-                  <p className="ion-text-wrap">
-                    <b>Agency Name:</b>{" "}
-                    <span>
-                      {data.name} ({data.abbrev})
-                    </span>
-                  </p>
+                    <p className="ion-text-wrap">
+                      <b>Agency Name:</b>{" "}
+                      <span>
+                        {data.name} ({data.abbrev})
+                      </span>
+                    </p>
 
-                  <p className="ion-text-wrap">
-                    <b>Founded:</b> <span>{data.founding_year}</span>
-                  </p>
+                    <p className="ion-text-wrap">
+                      <b>Type:</b> <span>{data.type}</span>
+                    </p>
 
-                  <p className="ion-text-wrap">
-                    <b>Leadership:</b> <span>{data.administrator}</span>
-                  </p>
+                    <p className="ion-text-wrap">
+                      <b>Founded:</b> <span>{data.founding_year}</span>
+                    </p>
 
-                  <p className="ion-text-wrap">
-                    <b>Description:</b> <span>{data.description}</span>
-                  </p>
-                </IonLabel>
-              </IonItem>
-            </IonContent>
-          </IonModal>
-        </>
+                    <p className="ion-text-wrap">
+                      <b>Leadership:</b> <span>{data.administrator}</span>
+                    </p>
+
+
+                    <p className="ion-text-wrap">
+                      <b>Description:</b> <span>{data.description}</span>
+                    </p>
+                  </IonLabel>
+                </IonItem>
+              </IonCard>
+       
       );
     } else {
       return <>Test</>;

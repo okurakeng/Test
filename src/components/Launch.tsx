@@ -70,7 +70,7 @@ export default function LaunchTimeline(props: any) {
           )
         );
       };
-
+      console.log("rendering..")
       return (
         <>
           <IonGrid>
@@ -89,12 +89,16 @@ export default function LaunchTimeline(props: any) {
               onIonInput={(ev) => handleInput(ev)}
             ></IonSearchbar>
 
+    
             {results.map((launch: any, index: number, array) => {
+             
               const isFirstElement = index === 0;
               const previousDate = isFirstElement ? null : array[index - 1];
               const monthChanged = isFirstElement
                 ? true
                 : hasMonthChanged(launch, previousDate);
+
+                launch.program.length > 0 ? console.log(launch.name, launch.program) : console.log("empty")
 
               if (monthChanged) {
                 let monthInWords =

@@ -1,11 +1,27 @@
-import { IonIcon, IonItem, IonLabel } from "@ionic/react";
+import {
+  IonContent,
+  IonIcon,
+  IonItem,
+  IonLabel,
+  useIonPopover,
+} from "@ionic/react";
 import "../../Launch.css";
-import { ellipse } from "ionicons/icons";
+import { ellipse, helpCircleOutline } from "ionicons/icons";
 
 export default function StatusInfo(props: any) {
   //
   const displayStatus = (props: any) => {
     const { launch } = props;
+
+    const Popover = () => (
+      <IonContent className="ion-padding">
+        {launch.status.description}
+      </IonContent>
+    );
+
+    const [present, dismiss] = useIonPopover(Popover, {
+      onDismiss: (data: any, role: string) => dismiss(data, role),
+    });
 
     let color = "";
     switch (launch.status.id) {
@@ -47,10 +63,21 @@ export default function StatusInfo(props: any) {
             <p className="ion-text-wrap">
               <b>Launch Status:</b>{" "}
               <IonIcon color={color} icon={ellipse}></IonIcon>{" "}
-              <span>
-                <abbr title={launch.status.description}>
-                  {launch.status.name}
-                </abbr>
+              <span
+                id="click-trigger"
+                style={{ borderBottom: "1px dotted " }}
+                onClick={(e: any) =>
+                  present({
+                    event: e,
+                    onDidDismiss: (e: CustomEvent) =>
+                      console.log(
+                        `Popover dismissed with role: ${e.detail.role}`
+                      ),
+                  })
+                }
+              >
+                {launch.status.name}{" "}
+                <IonIcon icon={helpCircleOutline}></IonIcon>
               </span>
             </p>
 
@@ -68,10 +95,21 @@ export default function StatusInfo(props: any) {
             <p className="ion-text-wrap">
               <b>Launch Status:</b>{" "}
               <IonIcon color={color} icon={ellipse}></IonIcon>{" "}
-              <span>
-                <abbr title={launch.status.description}>
-                  {launch.status.name}
-                </abbr>
+              <span
+                id="click-trigger"
+                style={{ borderBottom: "1px dotted " }}
+                onClick={(e: any) =>
+                  present({
+                    event: e,
+                    onDidDismiss: (e: CustomEvent) =>
+                      console.log(
+                        `Popover dismissed with role: ${e.detail.role}`
+                      ),
+                  })
+                }
+              >
+                {launch.status.name}{" "}
+                <IonIcon icon={helpCircleOutline}></IonIcon>
               </span>
             </p>
           </IonLabel>

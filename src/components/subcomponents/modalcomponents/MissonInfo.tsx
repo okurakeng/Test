@@ -1,9 +1,21 @@
-import { IonItem, IonLabel } from "@ionic/react";
+import { IonContent, IonIcon, IonItem, IonLabel, useIonPopover } from "@ionic/react";
 import "../../Launch.css";
 import { repeatedFunctions } from "../../../hooks/repeatedFunctions";
+import { helpCircleOutline } from "ionicons/icons";
 export default function MissionInfo(props: any) {
   const { dateGenUTC, dateGen } = repeatedFunctions();
   const { launch } = props;
+
+  const Popover = () => (
+    <IonContent className="ion-padding">
+      {launch.net_precision.description}
+    </IonContent>
+  );
+
+  const [present, dismiss] = useIonPopover(Popover, {
+    onDismiss: (data: any, role: string) => dismiss(data, role),
+  });
+
   // agency error handling
   const getAgency = (agencies: any) => {
     if (agencies.length == 0) {
@@ -28,6 +40,29 @@ export default function MissionInfo(props: any) {
     }
   };
 
+  function getProgram(programs: any) {
+    if (programs.length == 0) {
+      return (
+        <>
+          <b>Program:</b> <span>Not Available</span>
+        </>
+      );
+    } else {
+      let list = "";
+      // console.log(agencies)
+      for (let program of programs) {
+        //  console.log(agency.name)
+        list += program.name + "; ";
+      }
+
+      return (
+        <>
+          <b>Program:</b> <span>{list}</span>{" "}
+        </>
+      );
+    }
+  }
+
   return (
     <>
       <IonItem>
@@ -43,11 +78,22 @@ export default function MissionInfo(props: any) {
           </p>
           <p className="ion-text-wrap">
             <b>Launch time:</b>{" "}
+            <span
+              id="click-trigger"
+              style={{ borderBottom: "1px dotted " }}
+              onClick={(e: any) =>
+                present({
+                  event: e,
+                  onDidDismiss: (e: CustomEvent) =>
+                    console.log(
+                      `Popover dismissed with role: ${e.detail.role}`
+                    ),
+                })
+              }
+            >
+              {dateGenUTC(launch.net, launch.net_precision, true)} <IonIcon icon={helpCircleOutline}></IonIcon>
+            </span>
             <span>
-              <abbr title={launch.net_precision.description}>
-                {dateGenUTC(launch.net, launch.net_precision, true)}
-              </abbr>
-
               {launch.net_precision.id < 5 ? (
                 <>
                   {" "}
@@ -97,6 +143,10 @@ export default function MissionInfo(props: any) {
           </p>
           <p className="ion-text-wrap">
             {getAgency(launch.mission ? launch.mission.agencies : [])}
+          </p>
+
+          <p className="ion-text-wrap">
+            {getProgram(launch.program ? launch.program : [])}
           </p>
         </IonLabel>
       </IonItem>

@@ -5,8 +5,8 @@ import GaugeChart from "react-gauge-chart";
 
 export default function PogoInfo(props: any) {
   const { launch } = props;
-  console.log(launch.probability);
-  console.log(launch.weather_concerns);
+  // console.log(launch.probability);
+  // console.log(launch.weather_concerns);
 
   function weatherPogo() {
     if (launch.probability && launch.weather_concerns) {

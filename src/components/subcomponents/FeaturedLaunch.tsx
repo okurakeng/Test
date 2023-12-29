@@ -26,7 +26,6 @@ export default function FeaturedLaunches(props: any) {
   };
 
   const closeModal = () => {
-    console.log("test");
     setIsOpen(false);
   };
 

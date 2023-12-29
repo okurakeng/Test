@@ -3,6 +3,9 @@ import axios from "axios";
 import {
   IonButton,
   IonButtons,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
   IonContent,
   IonHeader,
   IonItem,
@@ -67,40 +70,44 @@ export default function Rocket(props: any) {
               </IonToolbar>
             </IonHeader>
             <IonContent>
-              <IonItem>
-                <IonLabel>
-                  <CustomImage className={""} image_url={data.image_url} />
+              <IonCard>
+                <CustomImage className={""} image_url={data.image_url} />
+                <IonCardHeader>
+                  <IonCardTitle>{data.full_name}</IonCardTitle>
+                </IonCardHeader>
+                <IonItem>
+                  <IonLabel>
+                    {/* <img alt="Img missing " src={data.image_url} /> */}
+                    <h2>Rocket Info:</h2>
 
-                  {/* <img alt="Img missing " src={data.image_url} /> */}
-                  <h2>Rocket Info:</h2>
+                    <p className="ion-text-wrap">
+                      <b>Rocket Name:</b>{" "}
+                      <span>
+                        {data.full_name} (Reuseable?{" "}
+                        {data.reusable ? "Yes" : "No"}; Active?{" "}
+                        {data.active ? "Yes" : "No"})
+                      </span>
+                    </p>
 
-                  <p className="ion-text-wrap">
-                    <b>Rocket Name:</b>{" "}
-                    <span>
-                      {data.full_name} (Reuseable?{" "}
-                      {data.reusable ? "Yes" : "No"}; Active?{" "}
-                      {data.active ? "Yes" : "No"})
-                    </span>
-                  </p>
-
-                  {/* <p className="ion-text-wrap">
+                    {/* <p className="ion-text-wrap">
                   <b>Manufacturer:</b> <span>{data.manufacturer.name}</span>
                 </p> */}
 
-                  <p className="ion-text-wrap">
-                    <b>Family:</b> <span>{data.family}</span>
-                  </p>
+                    <p className="ion-text-wrap">
+                      <b>Family:</b> <span>{data.family}</span>
+                    </p>
 
-                  <p className="ion-text-wrap">
-                    <b>First Flight:</b>{" "}
-                    <span>{dateGenUTC(data.maiden_flight, 5, false)}</span>
-                  </p>
+                    <p className="ion-text-wrap">
+                      <b>First Flight:</b>{" "}
+                      <span>{dateGenUTC(data.maiden_flight, 5, false)}</span>
+                    </p>
 
-                  <p className="ion-text-wrap">
-                    <b>Description:</b> <span>{data.description}</span>
-                  </p>
-                </IonLabel>
-              </IonItem>
+                    <p className="ion-text-wrap">
+                      <b>Description:</b> <span>{data.description}</span>
+                    </p>
+                  </IonLabel>
+                </IonItem>
+              </IonCard>
             </IonContent>
           </IonModal>
         </>
