@@ -13,15 +13,15 @@ import {
 } from "@ionic/react";
 import CustomImage from "../CustomImage";
 export default function Agency(props: any) {
-  const { url, showButton } = props;
+  const { url } = props;
 
   const [data, setData] = useState(Object);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     // let url = "";
-    if (showButton)
-      getAgency(url);
+
+    getAgency(url);
   }, []);
 
   const getAgency = (url: string) => {
@@ -38,23 +38,23 @@ export default function Agency(props: any) {
   };
 
   function displayAgency() {
-    if (!showButton) return <></>;
     // const { data } = props;
     // console.log(data)
     if (data) {
       return (
         <>
           <IonButton
+            className="ion-text-wrap"
             onClick={() => {
               setIsOpen(true);
             }}
           >
-            More Info on Agency
+            More Info on {data.name}
           </IonButton>
           <IonModal isOpen={isOpen}>
             <IonHeader>
               <IonToolbar>
-                <IonTitle>Agency</IonTitle>
+                <IonTitle>{data.name}</IonTitle>
                 <IonButtons slot="end">
                   <IonButton
                     onClick={() => {
@@ -69,7 +69,7 @@ export default function Agency(props: any) {
             <IonContent>
               <IonItem>
                 <IonLabel>
-                <CustomImage className={""} image_url={data.logo_url} />
+                  <CustomImage className={""} image_url={data.logo_url} />
                   {/* <img alt="Img missing " src={data.logo_url} /> */}
                   <h2>Agency Info:</h2>
 

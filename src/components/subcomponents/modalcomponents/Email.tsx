@@ -1,7 +1,7 @@
-import { IonButton, IonIcon, IonItem } from "@ionic/react";
+import { IonButton, IonIcon, IonItem, IonLabel } from "@ionic/react";
 import "../../Launch.css";
 import { repeatedFunctions } from "../../../hooks/repeatedFunctions";
-import { mail } from 'ionicons/icons';
+import { mail } from "ionicons/icons";
 
 export default function Email(props: any) {
   const { launch } = props;
@@ -19,17 +19,20 @@ export default function Email(props: any) {
     launch.rocket.configuration.full_name
   }\nI got this info from: https://okaykenji.github.io/data`;
 
-
-
   // console.log(launch);
   return (
     <IonItem>
-      <IonButton
-        href={`mailto:?subject=${encodeURIComponent(launch.mission.name)}&body=${encodeURIComponent(body)}`}
-      >
-        Email<IonIcon icon={mail}></IonIcon>
-      </IonButton>
-      
+      <IonLabel>
+        <h2>Share:</h2>
+        <IonButton
+          className="ion-text-wrap"
+          href={`mailto:?subject=${encodeURIComponent(
+            launch.mission.name
+          )}&body=${encodeURIComponent(body)}`}
+        >
+          Email<IonIcon icon={mail}></IonIcon>
+        </IonButton>
+      </IonLabel>
     </IonItem>
   );
 }

@@ -19,17 +19,16 @@ export default function LaunchTimeline(props: any) {
   function hasMonthChanged(currentDate: any, previousDate: any) {
     if (currentDate.net_precision && previousDate.net_precision)
       if (currentDate.net_precision.id >= 8)
-        return (currentDate.net_precision.id !== previousDate.net_precision.id);
-      else 
+        return currentDate.net_precision.id !== previousDate.net_precision.id;
+      else
         return (
           new Date(currentDate.net).getUTCMonth() !==
-          new Date(previousDate.net).getUTCMonth() 
-        ) ;
-
-    else 
+          new Date(previousDate.net).getUTCMonth()
+        );
+    else
       return (
         new Date(currentDate.net).getUTCMonth() !==
-        new Date(previousDate.net).getUTCMonth() 
+        new Date(previousDate.net).getUTCMonth()
       );
   }
 
@@ -65,10 +64,9 @@ export default function LaunchTimeline(props: any) {
               d.launch_service_provider.name.toLowerCase().indexOf(query) >
                 -1 ||
               d.pad.name.toLowerCase().indexOf(query) > -1 ||
-              d.pad.location.name.toLowerCase().indexOf(query) > -1
-             || monthAsWordUTC(d.net).toLowerCase().indexOf(query) > -1 
-             || d.status.abbrev.toLowerCase().indexOf(query) > -1 
-
+              d.pad.location.name.toLowerCase().indexOf(query) > -1 ||
+              monthAsWordUTC(d.net).toLowerCase().indexOf(query) > -1 ||
+              d.status.abbrev.toLowerCase().indexOf(query) > -1
           )
         );
       };
@@ -109,19 +107,28 @@ export default function LaunchTimeline(props: any) {
 
                 if (launch.net_precision)
                   if (launch.net_precision.id >= 8)
-                    monthInWords = launch.net_precision.name + " (~" + monthAsWordUTC(launch.net) + " " + new Date(launch.net).getUTCFullYear() +")";
+                    monthInWords =
+                      launch.net_precision.name +
+                      " (~" +
+                      monthAsWordUTC(launch.net) +
+                      " " +
+                      new Date(launch.net).getUTCFullYear() +
+                      ")";
 
                 return (
                   <div key={launch.id}>
-                    <IonItem className="rows" style={{ fontWeight: 'bold' }}>
+                    <IonItem className="rows" style={{ fontWeight: "bold" }}>
                       {monthInWords}
                     </IonItem>
-                    <LaunchGridRow launch={launch} ></LaunchGridRow>
+                    <LaunchGridRow launch={launch}></LaunchGridRow>
                   </div>
                 );
               } else {
                 return (
-                  <LaunchGridRow launch={launch} key={launch.id}></LaunchGridRow>
+                  <LaunchGridRow
+                    launch={launch}
+                    key={launch.id}
+                  ></LaunchGridRow>
                 );
               }
             })}
@@ -131,13 +138,14 @@ export default function LaunchTimeline(props: any) {
             </IonItem>
             <IonItem className="rows">
               <p className="ion-label">
-                Created Ionic React with Axios. All data courtesy of
-                thespacedevs's API.{" "}
+                All data courtesy of thespacedevs's API.{" "}
                 <a href="https://lldev.thespacedevs.com/docs/">
                   See their website for more info
                 </a>
-                . Some data is inaccurate due to using the free dev API. Date
-                last updated {date ? date.toString(): "Error getting date"}
+                . API last contacted{" "}
+                {date ? date.toString() : "Error getting date"}. Created in
+                Ionic React, see{" "}
+                <a href="https://github.com/OkayKenji/Data/">code here</a>.
               </p>
             </IonItem>
           </IonGrid>

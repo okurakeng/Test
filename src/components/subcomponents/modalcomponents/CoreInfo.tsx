@@ -1,8 +1,4 @@
-import {
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-} from "@ionic/react";
+import { IonCardHeader, IonCardSubtitle, IonCardTitle } from "@ionic/react";
 import "../../Launch.css";
 import { repeatedFunctions } from "../../../hooks/repeatedFunctions";
 import Countdown from "../Countdown";
@@ -11,11 +7,10 @@ import CustomImage from "../CustomImage";
 export default function CoreInfo(props: any) {
   const { launch } = props;
 
-  const { dateGenUTC,dateGen } = repeatedFunctions();
+  const { dateGenUTC, dateGen } = repeatedFunctions();
   return (
     <>
       <CustomImage className={""} image_url={launch.image} />
-
       {/* <img alt="Img missing " src={launch.image} /> */}
       <IonCardHeader>
         <IonCardTitle>
@@ -25,7 +20,8 @@ export default function CoreInfo(props: any) {
         </IonCardTitle>
         <IonCardSubtitle>
           {launch.rocket.configuration.name} |{" "}
-          {dateGenUTC(launch.net, launch.net_precision, false)} | <Countdown launchDate={launch.net} inline={true}></Countdown>
+          {dateGenUTC(launch.net, launch.net_precision, false)} |{" "}
+          <Countdown launchDate={launch.net} inline={true}></Countdown>
         </IonCardSubtitle>
       </IonCardHeader>{" "}
     </>

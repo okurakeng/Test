@@ -47,18 +47,20 @@ export default function StatusInfo(props: any) {
             <p className="ion-text-wrap">
               <b>Launch Status:</b>{" "}
               <IonIcon color={color} icon={ellipse}></IonIcon>{" "}
-              <span><abbr title={launch.status.description}>{launch.status.name}</abbr></span>
+              <span>
+                <abbr title={launch.status.description}>
+                  {launch.status.name}
+                </abbr>
+              </span>
             </p>
 
             <p className="ion-text-wrap">
-              <b>Failure reason:</b>{" "}
-              <span>{launch.failreason}</span>
+              <b>Failure reason:</b> <span>{launch.failreason}</span>
             </p>
           </IonLabel>
         </IonItem>
       );
-    }
-    else {
+    } else {
       return (
         <IonItem>
           <IonLabel>
@@ -66,7 +68,11 @@ export default function StatusInfo(props: any) {
             <p className="ion-text-wrap">
               <b>Launch Status:</b>{" "}
               <IonIcon color={color} icon={ellipse}></IonIcon>{" "}
-              <span><abbr title={launch.status.description}>{launch.status.name}</abbr></span>
+              <span>
+                <abbr title={launch.status.description}>
+                  {launch.status.name}
+                </abbr>
+              </span>
             </p>
           </IonLabel>
         </IonItem>

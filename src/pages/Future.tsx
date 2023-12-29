@@ -7,23 +7,24 @@ import {
   IonRefresher,
   IonRefresherContent,
   IonTitle,
-  IonToolbar
+  IonToolbar,
 } from "@ionic/react";
-import { rocket } from 'ionicons/icons';
+import { rocket } from "ionicons/icons";
 import Parent from "../components/Parent";
 
 const Future: React.FC = () => {
   try {
-    // AndroidFullScreen.immersiveMode(()=>{console.log(":)")}, console.log(":(")) 
-  } catch {
-    
-  }
+    // AndroidFullScreen.immersiveMode(()=>{console.log(":)")}, console.log(":("))
+  } catch {}
 
   return (
     <IonPage id="home-page">
       <IonHeader>
         <IonToolbar>
-          <IonTitle><IonIcon icon={rocket}></IonIcon> Next 100 Launches <IonIcon icon={rocket}></IonIcon></IonTitle>
+          <IonTitle>
+            <IonIcon icon={rocket}></IonIcon> Next 100 Launches{" "}
+            <IonIcon icon={rocket}></IonIcon>
+          </IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -37,7 +38,13 @@ const Future: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         {/* <FutureParent /> */}
-        <Parent url={"https://ll.thespacedevs.com/2.2.0/launch/upcoming/?format=json&limit=100"} dataName={"dataFuture"} dataDate={"dataFutureDate"} />
+        <Parent
+          url={
+            "https://ll.thespacedevs.com/2.2.0/launch/upcoming/?format=json&limit=100"
+          }
+          dataName={"dataFuture"}
+          dataDate={"dataFutureDate"}
+        />
         {/* <IonButton onClick={ () => {}>Click Me!</IonButton> */}
       </IonContent>
     </IonPage>

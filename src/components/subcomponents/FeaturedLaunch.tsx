@@ -6,7 +6,7 @@ import {
   IonGrid,
   IonItem,
   IonModal,
-  IonRow
+  IonRow,
 } from "@ionic/react";
 import "../Launch.css";
 import LaunchInfo from "./modalcomponents/LaunchInfo";
@@ -40,7 +40,10 @@ export default function FeaturedLaunches(props: any) {
                 openModal();
               }}
             >
-              <CustomImage className={"specialImage"} image_url={launch.image} />
+              <CustomImage
+                className={"specialImage"}
+                image_url={launch.image}
+              />
               {/* <img
                 className="specialImage"
                 alt="Img missing "
@@ -53,10 +56,10 @@ export default function FeaturedLaunches(props: any) {
                     : launch.name.substring(launch.name.indexOf("|") + 1)}
                 </IonCardTitle>
               </IonCardHeader>
-              <LaunchInfo launch={launch} showButton={false}></LaunchInfo>
+              <LaunchInfo launch={launch}></LaunchInfo>
               <IonItem>Click this tab for more info!</IonItem>
             </IonCard>
-            
+
             <IonModal isOpen={isOpen && launch.id == id}>
               <LaunchModal
                 launch={launch}
@@ -65,7 +68,6 @@ export default function FeaturedLaunches(props: any) {
             </IonModal>
           </IonItem>
         </IonCol>
-
 
         <IonCol>
           <Countdown launchDate={launch.net} inline={false}></Countdown>

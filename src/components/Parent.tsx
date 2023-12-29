@@ -11,7 +11,7 @@ export default function Parent(props: any) {
   const [lastUpdate, setDate] = useState("");
 
   useEffect(() => {
-    console.log("Rendering...")
+    console.log("Rendering...");
     if (typeof localforage != "undefined") {
       console.log("Working"); // pass test
 
@@ -79,7 +79,11 @@ export default function Parent(props: any) {
               // from the offline store.
               if (data == null) {
                 axios
-                  .get(url.substring(0,url.indexOf("."))+"dev"+ url.substring(url.indexOf(".")))
+                  .get(
+                    url.substring(0, url.indexOf(".")) +
+                      "dev" +
+                      url.substring(url.indexOf("."))
+                  )
                   .then((response) => {
                     console.log(response.data);
                     setData(response.data.results);
@@ -97,7 +101,6 @@ export default function Parent(props: any) {
                             console.log("Error");
                           } else {
                             setData(data);
-                            
                           }
                         })
                         .catch(function (err: any) {
@@ -172,5 +175,5 @@ export default function Parent(props: any) {
       });
   };
 
-  return <Launch launches={data} date={lastUpdate} dataName={dataName}  />;
+  return <Launch launches={data} date={lastUpdate} dataName={dataName} />;
 }
