@@ -2,6 +2,17 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Launch from "./Launch";
 import localforage from "localforage";
+import { chevronBackCircle } from "ionicons/icons";
+import {
+  IonFab,
+  IonFabButton,
+  IonFabList,
+  IonIcon,
+  IonRefresher,
+  IonRefresherContent,
+  IonToggle,
+  RefresherEventDetail,
+} from "@ionic/react";
 
 export default function Parent(props: any) {
   const WAIT_MINUTES = 30;
@@ -9,13 +20,38 @@ export default function Parent(props: any) {
 
   const [data, setData] = useState([]);
   const [lastUpdate, setDate] = useState("");
+  const [devMode, setDevMode] = useState(false);
+  const [offset, setOffset] = useState(0);
 
   useEffect(() => {
     console.log("Rendering...");
     if (typeof localforage != "undefined") {
       console.log("Working"); // pass test
 
-      localforage
+      localforage.getItem("devMode").then((devMode: any) => {
+        if (devMode) {
+          setDevMode(devMode);
+          if (devMode) {
+            localforage.getItem("offset").then((offset: any) => {
+              if (offset) {
+                setOffset(offset);
+                getAllLaunches(url+"&offset="+offset);
+                  // setDate(new Date());
+
+              } else {
+                fetchData();
+              }
+            });
+          }
+        } else {
+          fetchData();
+        }
+      })
+
+      
+
+      function fetchData() {
+        localforage
         .getItem(dataDate)
         .then(function (date: any) {
           if (date == null) {
@@ -59,6 +95,7 @@ export default function Parent(props: any) {
           // This code runs if there were any errors with getting stored date
           console.log(err);
         });
+      }
     } else {
       // error with local forage
       console.log("Localforage error");
@@ -175,5 +212,60 @@ export default function Parent(props: any) {
       });
   };
 
-  return <Launch launches={data} date={lastUpdate} dataName={dataName} />;
+  function handleRefresh(event: CustomEvent<RefresherEventDetail>) {
+    setTimeout(() => {
+      location.reload();
+    }, 1);
+  }
+
+  return (
+    <>
+      <IonRefresher
+        slot="fixed"
+        pullFactor={0.5}
+        pullMin={100}
+        pullMax={200}
+        onIonRefresh={handleRefresh}
+      >
+        <IonRefresherContent></IonRefresherContent>
+      </IonRefresher>
+      <Launch
+        launches={data}
+        date={lastUpdate}
+        dataName={dataName}
+        devMode={devMode}
+      />
+      <IonFab slot="fixed" vertical="bottom" horizontal="end">
+        <IonFabButton>
+          <IonIcon icon={chevronBackCircle}></IonIcon>
+        </IonFabButton>
+        <IonFabList side="start">
+          <div className="custom-container">
+            <IonToggle
+              id="myToggle"
+              className="custom-toggle"
+              checked={devMode}
+              onIonChange={(event: CustomEvent) => {
+                const isChecked = event.detail.checked;
+                setDevMode(isChecked);
+
+                localforage
+                  .setItem("devMode", isChecked)
+                  .then(function (value: any) {
+                    // Do other things once the value has been saved.
+                    console.log(value);
+                  })
+                  .catch(function (err: any) {
+                    // This code runs if there were any errors
+                    console.log(err);
+                  });
+              }}
+            >
+              Developer Mode
+            </IonToggle>
+          </div>
+        </IonFabList>
+      </IonFab>
+    </>
+  );
 }

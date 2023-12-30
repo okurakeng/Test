@@ -8,7 +8,7 @@ export default function MissionInfo(props: any) {
 
   const Popover = () => (
     <IonContent className="ion-padding">
-      {launch.net_precision.description}
+      {launch.net_precision?.description}
     </IonContent>
   );
 
@@ -94,7 +94,7 @@ export default function MissionInfo(props: any) {
               {dateGenUTC(launch.net, launch.net_precision, true)} <IonIcon icon={helpCircleOutline}></IonIcon>
             </span>
             <span>
-              {launch.net_precision.id < 5 ? (
+              {launch.net_precision?.id < 5 ? (
                 <>
                   {" "}
                   (Window:{" "}

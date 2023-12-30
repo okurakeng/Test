@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import {
   IonButton,
@@ -22,6 +22,8 @@ export default function Rocket(props: any) {
   const [data, setData] = useState(Object);
   const [isOpen, setIsOpen] = useState(false);
   const { dateGenUTC, dateGen } = repeatedFunctions();
+  const modal = useRef<HTMLIonModalElement>(null);
+
 
   useEffect(() => {
     getRocket(url);
@@ -54,7 +56,7 @@ export default function Rocket(props: any) {
           >
             More Info on {data.full_name}
           </IonButton>
-          <IonModal isOpen={isOpen}>
+          <IonModal isOpen={isOpen} ref={modal} initialBreakpoint={1} breakpoints={[0, 1]} onDidDismiss={() => setIsOpen(false)}>
             <IonHeader>
               <IonToolbar>
                 <IonTitle>{data.full_name}</IonTitle>

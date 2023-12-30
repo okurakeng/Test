@@ -1,11 +1,26 @@
-import { IonGrid, IonItem, IonProgressBar, IonSearchbar } from "@ionic/react";
+import {
+  IonContent,
+  IonFab,
+  IonFabButton,
+  IonFabList,
+  IonGrid,
+  IonIcon,
+  IonItem,
+  IonProgressBar,
+  IonSearchbar,
+  IonToggle,
+} from "@ionic/react";
 import "./Launch.css";
 import FeaturedLaunches from "./subcomponents/FeaturedLaunch";
 import LaunchGridRow from "./subcomponents/LaunchGridRow";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { repeatedFunctions } from "../hooks/repeatedFunctions";
+import localforage from "localforage";
+import Countdown from "./subcomponents/Countdown";
 
-export default function LaunchTimeline(props: any) {
+export default function Launch(props: any) {
+  const { devMode } = props;
+
   let loadingImages = [
     "https://cdn.dribbble.com/users/2882885/screenshots/7861928/media/a4c4da396c3da907e7ed9dd0b55e5031.gif",
     "https://media.tenor.com/DHkIdy0a-UkAAAAC/loading-cat.gif",
@@ -15,6 +30,26 @@ export default function LaunchTimeline(props: any) {
   ];
 
   const { monthAsWordUTC } = repeatedFunctions();
+
+  
+
+  function forceAPICall() {
+    let password = window.prompt(
+      "Enter password to force refresh (hint: check GitHub code)",
+      ""
+    );
+
+    if (password == "123456789") {
+      localforage.removeItem('dataPastDate');
+      localforage.removeItem('dataFutureDate');
+      localforage.removeItem('dataPast');
+      localforage.removeItem('dataFuture');
+      location.reload();
+    } else if (password == "clear") {
+      localforage.clear();
+      location.reload();
+    }
+  }
 
   function hasMonthChanged(currentDate: any, previousDate: any) {
     if (currentDate.net_precision && previousDate.net_precision)
@@ -48,13 +83,16 @@ export default function LaunchTimeline(props: any) {
       }
 
       let featuredLaunch = launches[0];
+    //  console.log(featuredLaunch);
       let displayedLaunches = launches.slice(1);
+    //  console.log(displayedLaunches);
 
       let [results, setResults] = useState([...displayedLaunches]);
 
-      const handleInput = (ev: Event) => {
+      const handleInput = (ev: Event ) => {
+
         let query = "";
-        const target = ev.target as HTMLIonSearchbarElement;
+        const target = ev?.target as HTMLIonSearchbarElement;
         if (target) query = target.value!.toLowerCase();
 
         setResults(
@@ -70,10 +108,23 @@ export default function LaunchTimeline(props: any) {
           )
         );
       };
-      console.log("rendering..")
+
+      console.log("rendering..");
+
+      // useEffect( () => {setResults([...displayedLaunches])} );
+
       return (
         <>
           <IonGrid>
+            {devMode ? (
+              <IonItem>
+                DEV MODE ON; Time since page opened/dev mode on:{" "}
+                <Countdown launchDate={new Date()} inline={true}></Countdown>
+              </IonItem>
+            ) : (
+              <></>
+            )}
+
             <IonItem className="rows">
               <h1>Featured Launch:</h1>
             </IonItem>
@@ -89,16 +140,14 @@ export default function LaunchTimeline(props: any) {
               onIonInput={(ev) => handleInput(ev)}
             ></IonSearchbar>
 
-    
             {results.map((launch: any, index: number, array) => {
-             
               const isFirstElement = index === 0;
               const previousDate = isFirstElement ? null : array[index - 1];
               const monthChanged = isFirstElement
                 ? true
                 : hasMonthChanged(launch, previousDate);
 
-                launch.program.length > 0 ? console.log(launch.name, launch.program) : console.log("empty")
+              // launch.program.length > 0 ? console.log(launch.name, launch.program) : console.log("empty")
 
               if (monthChanged) {
                 let monthInWords =
@@ -124,7 +173,10 @@ export default function LaunchTimeline(props: any) {
                     <IonItem className="rows" style={{ fontWeight: "bold" }}>
                       {monthInWords}
                     </IonItem>
-                    <LaunchGridRow launch={launch}></LaunchGridRow>
+                    <LaunchGridRow
+                      launch={launch}
+                      devMode={devMode}
+                    ></LaunchGridRow>
                   </div>
                 );
               } else {
@@ -132,6 +184,7 @@ export default function LaunchTimeline(props: any) {
                   <LaunchGridRow
                     launch={launch}
                     key={launch.id}
+                    devMode={devMode}
                   ></LaunchGridRow>
                 );
               }
@@ -149,7 +202,38 @@ export default function LaunchTimeline(props: any) {
                 . API last contacted{" "}
                 {date ? date.toString() : "Error getting date"}. Created in
                 Ionic React, see{" "}
-                <a href="https://github.com/OkayKenji/Data/">code here</a>.
+                <a href="https://github.com/OkayKenji/Data/">code here</a>.{" "}
+                <button
+                  onClick={() => {
+                    location.reload();
+                  }}
+                >
+                  Refresh Page
+                </button>
+                {devMode ? (
+                  <>
+                  <button onClick={() => forceAPICall()}>
+                    Purge all API data
+                  </button>
+                  <input id="offset" type="number" >
+
+                  </input>
+                  <button  onClick={()=> {
+                    console.log(document.getElementById("offset")?.value)
+
+                    let offset = Number.isNaN(Number.parseInt(document.getElementById("offset")?.value)) ? 0 : Number.parseInt(document.getElementById("offset")?.value)
+                    localforage
+                    .setItem("offset", offset);
+
+                    forceAPICall();
+
+                  }}>Refresh data with offset</button>
+                  <button onClick={() => { forceAPICall() }}>Clear ALL data</button>
+                  </>
+                  
+                ) : (
+                  <></>
+                )}
               </p>
             </IonItem>
           </IonGrid>

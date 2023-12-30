@@ -24,3 +24,31 @@ ion-col {
   object-fit: cover;
   object-position: 0% 0%; 
 }
+
+.custom-container {
+  display: flex;
+  align-items: center;
+  border-radius: 20px; /* Adjust the radius as needed */
+  overflow: hidden; /* Ensures that the border-radius is applied properly */
+
+  background-color: #559;
+  /* padding: 4px; */
+}
+
+ion-toggle {
+  padding: 12px;
+
+  --track-background: #ddd;
+  --track-background-checked: #ddd;
+
+  /* --handle-background: #eb7769; */
+  --handle-background-checked: #95c34e;
+
+  /* --handle-width: 25px;
+  --handle-height: 27px;
+  --handle-max-height: auto;
+  --handle-spacing: 6px;
+
+  --handle-border-radius: 4px;
+  --handle-box-shadow: none; */
+}

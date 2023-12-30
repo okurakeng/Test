@@ -10,7 +10,7 @@ import {
 } from "@ionic/react";
 import "../Launch.css";
 import LaunchInfo from "./modalcomponents/LaunchInfo";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Countdown from "./Countdown";
 import LaunchModal from "./LaunchModal";
 import CustomImage from "./CustomImage";
@@ -19,6 +19,8 @@ export default function FeaturedLaunches(props: any) {
   const [isOpen, setIsOpen] = useState(false);
   const [id, setID] = useState(0);
   const { launch } = props;
+
+  const modal = useRef<HTMLIonModalElement>(null);
 
   const openModal = () => {
     setID(launch.id);
@@ -59,7 +61,7 @@ export default function FeaturedLaunches(props: any) {
               <IonItem>Click this tab for more info!</IonItem>
             </IonCard>
 
-            <IonModal isOpen={isOpen && launch.id == id}>
+            <IonModal isOpen={isOpen && launch.id == id} ref={modal} initialBreakpoint={1} breakpoints={[0, 1]} onDidDismiss={() => setIsOpen(false)}>
               <LaunchModal
                 launch={launch}
                 closeModal={closeModal}

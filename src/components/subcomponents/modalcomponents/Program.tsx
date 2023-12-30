@@ -15,13 +15,15 @@ import {
 import "../../Launch.css";
 import { repeatedFunctions } from "../../../hooks/repeatedFunctions";
 import CustomImage from "../CustomImage";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Agency from "./Agency";
 import Agencies from "./Agencies";
 export default function Program(props: any) {
   const { dateGenUTC, dateGen } = repeatedFunctions();
   const [isOpen, setIsOpen] = useState(false);
   const { launch } = props;
+  const modal = useRef<HTMLIonModalElement>(null);
+
 
   // agency error handling
   const getAgency = (agencies: any) => {
@@ -71,7 +73,8 @@ export default function Program(props: any) {
             >
               Info on Involved Programs
             </IonButton>
-            <IonModal isOpen={isOpen}>
+            <IonModal isOpen={isOpen} ref={modal} initialBreakpoint={1} breakpoints={[0, 1]} onDidDismiss={() => setIsOpen(false)}>
+
               <IonHeader>
                 <IonToolbar>
                   <IonTitle className="ion-text-wrap">

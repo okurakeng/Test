@@ -17,8 +17,10 @@ import StatusInfo from "./modalcomponents/StatusInfo";
 import Email from "./modalcomponents/Email";
 import PogoInfo from "./modalcomponents/PogoInfo";
 import AdditionalInfo from "./modalcomponents/AdditionalInfo";
+import { useState } from "react";
 export default function Parent(props: any) {
-  const { launch, closeModal } = props;
+  const { launch, closeModal, devMode } = props;
+  const [text,setText] = useState('')
 
   return (
     <>
@@ -50,14 +52,18 @@ export default function Parent(props: any) {
           <LocationInfo launch={launch}></LocationInfo>
           <AdditionalInfo launch={launch}></AdditionalInfo>
           <Email launch={launch}></Email>
-          <IonItem>
+          {devMode ? <IonItem>
             <IonLabel>
-              <IonButton onClick={() => console.log(launch)}>
+              <IonButton onClick={() => {console.log(launch)
+              console.log(JSON.stringify(launch, null, 2))
+              setText(JSON.stringify(launch, null, 2));
+              }}>
                 Display Launch in Console
               </IonButton>
+              <pre >{text}</pre>
               <p>Data as of {launch.last_updated}</p>
             </IonLabel>
-          </IonItem>
+          </IonItem> : <></>}
         </IonCard>
       </IonContent>
     </>
