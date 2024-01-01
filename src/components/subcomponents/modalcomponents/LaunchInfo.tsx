@@ -4,7 +4,6 @@ import {
   IonIcon,
   IonItem,
   IonLabel,
-  IonPopover,
   useIonPopover,
 } from "@ionic/react";
 import "../../Launch.css";
@@ -19,7 +18,7 @@ export default function LaunchInfo(props: any) {
 
   const Popover = () => (
     <IonContent className="ion-padding">
-      {launch.net_precision.description}
+      {launch.net_precision ? launch.net_precision.description : "API didn't provide precision"}
     </IonContent>
   );
 

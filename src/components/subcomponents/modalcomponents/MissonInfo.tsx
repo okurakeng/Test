@@ -8,7 +8,7 @@ export default function MissionInfo(props: any) {
 
   const Popover = () => (
     <IonContent className="ion-padding">
-      {launch.net_precision?.description}
+      {launch.net_precision ? launch.net_precision.description : "API didn't provide precision"}
     </IonContent>
   );
 

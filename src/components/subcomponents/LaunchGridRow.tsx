@@ -21,7 +21,7 @@ export default function Parent(props: any) {
 
   return (
     <>
-      <IonItem className="rows"   onClick={() => {
+      <IonItem className="launchRows"   onClick={() => {
             openModal();
           }}>
             

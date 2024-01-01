@@ -13,10 +13,15 @@ function monthAsWord(date: any) {
 
 export function repeatedFunctions() {
   const dateGenUTC = (net: any, precision: any, includeTime: boolean) => {
-    if (!(net && precision)) return "Error";
-
-
+    if (!net)
+      return "Error";
+    
     let date = new Date(net);
+
+    if (!precision) {
+      return `${net.substring(net.indexOf("T") + 1, net.length - 4)}, ${monthAsWordUTC(date)
+      } ${date.getUTCDate()}, ${date.getUTCFullYear()} UTC Unclear`;
+    }
 
     if (precision.id >= 14) {
       return `${date.getUTCFullYear()}`;
@@ -53,9 +58,20 @@ export function repeatedFunctions() {
   };
 
   const dateGen = (net: any, precision: any, includeTime: boolean) => {
-    if (!(net && precision)) return "Error";
-
+    if (!net)
+      return "Error";
+    
     let date = new Date(net);
+
+    if (!precision) {
+      
+    const hour = date.getHours().toString().padStart(2, '0');
+    const minute = date.getMinutes().toString().padStart(2, '0');
+
+      return `~${hour}:${minute}, ${monthAsWord(date)
+      } ${date.getDate()}, ${date.getFullYear()} Unclear`;
+    }
+
 
     if (precision.id >= 14) {
       return `${date.getFullYear()}`;

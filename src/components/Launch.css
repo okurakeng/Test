@@ -2,6 +2,11 @@
   padding-bottom: 10px;
 }
 
+.launchRows {
+  padding-bottom: 10px;
+  cursor: pointer;
+}
+
 .specialImage {
   width: 100%; 
   height: 150px; 

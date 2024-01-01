@@ -1,4 +1,5 @@
 import {
+  IonCheckbox,
   IonContent,
   IonFab,
   IonFabButton,
@@ -19,7 +20,7 @@ import localforage from "localforage";
 import Countdown from "./subcomponents/Countdown";
 
 export default function Launch(props: any) {
-  const { devMode } = props;
+  const { devMode, useDevApi } = props;
 
   let loadingImages = [
     "https://cdn.dribbble.com/users/2882885/screenshots/7861928/media/a4c4da396c3da907e7ed9dd0b55e5031.gif",
@@ -31,7 +32,6 @@ export default function Launch(props: any) {
 
   const { monthAsWordUTC } = repeatedFunctions();
 
-  
 
   function forceAPICall() {
     let password = window.prompt(
@@ -50,6 +50,8 @@ export default function Launch(props: any) {
       location.reload();
     }
   }
+
+
 
   function hasMonthChanged(currentDate: any, previousDate: any) {
     if (currentDate.net_precision && previousDate.net_precision)
@@ -216,7 +218,7 @@ export default function Launch(props: any) {
                     Purge all API data
                   </button>
                   <input id="offset" type="number" >
-
+                    
                   </input>
                   <button  onClick={()=> {
                     console.log(document.getElementById("offset")?.value)
@@ -228,6 +230,12 @@ export default function Launch(props: any) {
                     forceAPICall();
 
                   }}>Refresh data with offset</button>
+                  <IonCheckbox checked={useDevApi} onIonChange={(event : CustomEvent) => {
+                    console.log(event.detail.checked)
+
+                    localforage
+                    .setItem("useDevApi", event.detail.checked);
+                  }}>Use Dev API on Next Reload</IonCheckbox>
                   <button onClick={() => { forceAPICall() }}>Clear ALL data</button>
                   </>
                   

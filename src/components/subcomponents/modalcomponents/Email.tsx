@@ -10,13 +10,13 @@ export default function Email(props: any) {
 
   // console.log(launch)
   let body = `Hey! Check it out. ${
-    launch.mission.name
+    launch.mission?.name
   } is launching soon!\nLaunch Time: ${dateGenUTC(
     launch.net,
     launch.net_precision,
     true
   )}\nLaunch Vehicle: ${
-    launch.rocket.configuration.full_name
+    launch.rocket?.configuration.full_name
   }\nI got this info from: https://okaykenji.github.io/data`;
 
   // console.log(launch);
@@ -27,7 +27,7 @@ export default function Email(props: any) {
         <IonButton
           className="ion-text-wrap"
           href={`mailto:?subject=${encodeURIComponent(
-            launch.mission.name
+            launch.mission?.name
           )}&body=${encodeURIComponent(body)}`}
         >
           Email<IonIcon icon={mail}></IonIcon>
