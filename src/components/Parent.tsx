@@ -16,7 +16,7 @@ import {
 
 export default function Parent(props: any) {
   const WAIT_MINUTES = 30;
-  let { url, dataName, dataDate } = props;
+  let { url, dataName, dataDate,searchFor } = props;
 
   const [data, setData] = useState([]);
   const [lastUpdate, setDate] = useState("");
@@ -86,8 +86,8 @@ export default function Parent(props: any) {
                 localforage.getItem("offset").then((offset: any) => {
                   if (offset) {
                     setOffset(offset);
-                    getAllLaunches(url + "&offset=" + offset, useDevApi);
-                    // setDate(new Date());
+                    url = url + "&offset=" + offset
+                    fetchData(useDevApi);
                   } else {
                     fetchData(useDevApi);
                   }
@@ -125,7 +125,9 @@ export default function Parent(props: any) {
       .get("https://ll.thespacedevs.com/2.2.0/api-throttle/")
       .then((response) => {
         if (response.data.current_use > 10 || useDevApi) {
-          console.log("115")
+
+          
+        
           localforage
             .getItem(dataName)
             .then(function (data: any) {
@@ -141,6 +143,32 @@ export default function Parent(props: any) {
                   .then((response) => {
                     console.log(response.data);
                     setData(response.data.results);
+
+                    if (useDevApi) {
+                      localforage
+                      .setItem(dataName, response.data.results)
+                      .then(function (value: any) {
+                        // Do other things once the value has been saved.
+                        console.log(value);
+                      })
+                      .catch(function (err: any) {
+                        // This code runs if there were any errors
+                        console.log(err);
+                      });
+      
+                    localforage
+                      .setItem(dataDate, new Date())
+                      .then(function (value: any) {
+                        setDate(value);
+                        // Do other things once the value has been saved.
+                        console.log(value);
+                      })
+                      .catch(function (err: any) {
+                        // This code runs if there were any errors
+                        console.log(err);
+                      });
+                    }
+
                   })
                   .catch((error) => {
                     console.log("Error of type", error.message, "occurred");
@@ -172,7 +200,7 @@ export default function Parent(props: any) {
               console.log(err);
             });
         } else {
-          console.log("test")
+          // console.log("test")
           axios
             .get(url)
             .then((response) => {
@@ -254,6 +282,7 @@ export default function Parent(props: any) {
         devMode={devMode}
         useDevApi={useDevApi}
         offset={offset}
+        searchFor={searchFor}
       />
       <IonFab slot="fixed" vertical="bottom" horizontal="end">
         <IonFabButton>

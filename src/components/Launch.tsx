@@ -20,7 +20,9 @@ import localforage from "localforage";
 import Countdown from "./subcomponents/Countdown";
 
 export default function Launch(props: any) {
-  const { devMode, useDevApi } = props;
+  const { devMode, useDevApi, searchFor } = props;
+
+  console.log(`Hey ${searchFor}`)
 
   let loadingImages = [
     "https://cdn.dribbble.com/users/2882885/screenshots/7861928/media/a4c4da396c3da907e7ed9dd0b55e5031.gif",
@@ -137,7 +139,7 @@ export default function Launch(props: any) {
               <h1>Other Launches:</h1>
             </IonItem>
 
-            <IonSearchbar
+            <IonSearchbar 
               debounce={1}
               onIonInput={(ev) => handleInput(ev)}
             ></IonSearchbar>

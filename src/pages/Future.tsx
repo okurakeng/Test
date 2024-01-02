@@ -11,11 +11,19 @@ import {
 } from "@ionic/react";
 import { rocket } from "ionicons/icons";
 import Parent from "../components/Parent";
+import { RouteComponentProps } from "react-router";
 
-const Future: React.FC = () => {
+interface Future
+  extends RouteComponentProps<{
+    id: string;
+  }> {}
+
+const Future: React.FC<Future> =  ({match}) => {
   try {
     // AndroidFullScreen.immersiveMode(()=>{console.log(":)")}, console.log(":("))
   } catch {}
+
+  console.log( match?.params.id )
 
   return (
     <IonPage id="home-page">
@@ -44,6 +52,7 @@ const Future: React.FC = () => {
           }
           dataName={"dataFuture"}
           dataDate={"dataFutureDate"}
+          searchFor={ match?.params.id }
         />
         {/* <IonButton onClick={ () => {}>Click Me!</IonButton> */}
       </IonContent>

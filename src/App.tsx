@@ -42,14 +42,30 @@ const App: React.FC = () => (
       <IonTabs>
         <IonRouterOutlet>
           <Route path="/" exact={true}>
-            <Redirect to="/data" />
+            <Redirect to="/data/future" />
           </Route>
           <Route path="/data" exact={true}>
-            <Future />
+          <Redirect to="/data/future" />
+            
           </Route>
-          <Route path="/data/past" exact={true}>
-            <Past />
+
+          <Route path="/data/future/" exact={true}>
+            <Future match={undefined} />
           </Route>
+
+          <Route path="/data/past/" exact={true}>
+            <Past match={undefined} />
+          </Route>
+         
+
+          <Route path="/data/future/:id" exact={true} component={Future}>
+            {/* < /> */}
+          </Route>
+          <Route path="/data/past/:id" exact={true}  component={Past}>
+            {/* < /> */}
+          </Route>
+
+          
         </IonRouterOutlet>
 
         <IonTabBar slot="bottom">
@@ -57,7 +73,7 @@ const App: React.FC = () => (
             <IonIcon icon={caretBackOutline}></IonIcon>
             <IonLabel>Past</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="home" href="/data">
+          <IonTabButton tab="home" href="/data/future">
             <IonIcon icon={caretForwardOutline}></IonIcon>
             <IonLabel>Future</IonLabel>
           </IonTabButton>

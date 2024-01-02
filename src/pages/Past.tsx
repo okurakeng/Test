@@ -11,8 +11,19 @@ import {
 
 import { rocket } from "ionicons/icons";
 import Parent from "../components/Parent";
+import { RouteComponentProps } from "react-router";
 
-const Past: React.FC = () => {
+interface Past
+  extends RouteComponentProps<{
+    id: string;
+  }> {}
+
+  const Past: React.FC<Past> =  ({match}) => {
+    try {
+      // AndroidFullScreen.immersiveMode(()=>{console.log(":)")}, console.log(":("))
+    } catch {}
+  
+    console.log( match?.params.id )
   return (
     <IonPage id="home-page">
       <IonHeader>
