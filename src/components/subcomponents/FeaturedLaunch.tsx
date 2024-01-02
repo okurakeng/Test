@@ -36,7 +36,7 @@ export default function FeaturedLaunches(props: any) {
       <IonRow class="ion-align-items-center">
         <IonCol size="auto">
           <IonItem className="rows">
-            <IonCard
+            <IonCard className="clickable"
               onClick={() => {
                 openModal();
               }}

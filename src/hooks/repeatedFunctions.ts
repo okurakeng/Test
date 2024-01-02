@@ -15,12 +15,18 @@ export function repeatedFunctions() {
   const dateGenUTC = (net: any, precision: any, includeTime: boolean) => {
     if (!net)
       return "Error";
-    
+
     let date = new Date(net);
 
     if (!precision) {
-      return `${net.substring(net.indexOf("T") + 1, net.length - 4)}, ${monthAsWordUTC(date)
-      } ${date.getUTCDate()}, ${date.getUTCFullYear()} UTC Unclear`;
+      const dateObject = new Date(net);
+      const seconds = dateObject.getUTCSeconds();
+      if( seconds == 0)
+       return `${net.substring(net.indexOf("T") + 1, net.length - 4)}, ${monthAsWordUTC(date)
+        } ${date.getUTCDate()}, ${date.getUTCFullYear()} UTC Unclear`;
+       else 
+       return `${net.substring(net.indexOf("T") + 1, net.length - 1)}, ${monthAsWordUTC(date)
+       } ${date.getUTCDate()}, ${date.getUTCFullYear()} UTC Unclear`;
     }
 
     if (precision.id >= 14) {
@@ -60,16 +66,26 @@ export function repeatedFunctions() {
   const dateGen = (net: any, precision: any, includeTime: boolean) => {
     if (!net)
       return "Error";
-    
+
     let date = new Date(net);
 
     if (!precision) {
-      
-    const hour = date.getHours().toString().padStart(2, '0');
-    const minute = date.getMinutes().toString().padStart(2, '0');
 
-      return `~${hour}:${minute}, ${monthAsWord(date)
-      } ${date.getDate()}, ${date.getFullYear()} Unclear`;
+      const hour = date.getHours().toString().padStart(2, '0');
+      const minute = date.getMinutes().toString().padStart(2, '0');
+      const second = date.getSeconds().toString().padStart(2, '0');
+
+      const dateObject = new Date(net);
+      const seconds = dateObject.getUTCSeconds();
+      if( seconds == 0) {
+        return `~${hour}:${minute}, ${monthAsWord(date)
+        } ${date.getDate()}, ${date.getFullYear()} Unclear`;
+      } else {
+        return `~${hour}:${minute}:${second}, ${monthAsWord(date)
+        } ${date.getDate()}, ${date.getFullYear()} Unclear`;
+      }
+
+      
     }
 
 
