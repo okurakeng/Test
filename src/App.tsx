@@ -42,32 +42,32 @@ const App: React.FC = () => (
       <IonTabs>
         <IonRouterOutlet>
           <Route path="/" exact={true}>
-            <Redirect to="/data/future" />
+            <Redirect to="/Data/Future" />
           </Route>
-          <Route path="/data" exact={true}>
-            <Redirect to="/data/future" />
+          <Route path="/Data" exact={true}>
+            <Redirect to="/Data/Future" />
           </Route>
 
-          <Route path="/data/future/" exact={true}>
+          <Route path="/Data/Future/" exact={true}>
             <Future />
           </Route>
 
-          <Route path="/data/past/" exact={true}>
-            <Past   />
+          <Route path="/Data/Past/" exact={true}>
+            <Past />
           </Route>
 
-          <Route path="/data/future/:id" exact={true} component={Future}>
+          <Route path="/Data/Future/:id" exact={true} component={Future}>
           </Route>
-          <Route path="/data/past/:id" exact={true} component={Past}>
+          <Route path="/Data/Past/:id" exact={true} component={Past}>
           </Route>
         </IonRouterOutlet>
 
         <IonTabBar slot="bottom">
-          <IonTabButton tab="Past" href="/data/past">
+          <IonTabButton tab="Past" href="/Data/Past">
             <IonIcon icon={caretBackOutline}></IonIcon>
             <IonLabel>Past</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="home" href="/data/future">
+          <IonTabButton tab="home" href="/Data/Future">
             <IonIcon icon={caretForwardOutline}></IonIcon>
             <IonLabel>Future</IonLabel>
           </IonTabButton>
