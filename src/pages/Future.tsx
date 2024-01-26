@@ -11,12 +11,15 @@ import {
 } from "@ionic/react";
 import { rocket } from "ionicons/icons";
 import Parent from "../components/Parent";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 
-const Future: React.FC = () => {
-  try {
-    // AndroidFullScreen.immersiveMode(()=>{console.log(":)")}, console.log(":("))
-  } catch {}
+interface Future
+  extends RouteComponentProps<{
+    id: string;
+  }> {}
 
+const Future: React.FC<Future> = ({match}) => {
+  console.log(match)
   return (
     <IonPage id="home-page">
       <IonHeader>
@@ -51,4 +54,4 @@ const Future: React.FC = () => {
   );
 };
 
-export default Future;
+export default  withRouter(Future);;
