@@ -11,8 +11,15 @@ import {
 
 import { rocket } from "ionicons/icons";
 import Parent from "../components/Parent";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 
-const Past: React.FC = () => {
+interface Past
+  extends RouteComponentProps<{
+    id: string;
+  }> {}
+
+const Past: React.FC<Past> = ({match}) => {
+  console.log(match)
   return (
     <IonPage id="home-page">
       <IonHeader>
@@ -45,4 +52,4 @@ const Past: React.FC = () => {
   );
 };
 
-export default Past;
+export default  withRouter(Past);;

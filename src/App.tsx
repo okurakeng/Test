@@ -53,15 +53,13 @@ const App: React.FC = () => (
           </Route>
 
           <Route path="/data/past/" exact={true}>
-            <Past />
+            <Past   />
           </Route>
-{/* 
-          <Route path="/data/future/:id" exact={true} component={Future}>
 
+          <Route path="/data/future/:id" exact={true} component={Future}>
           </Route>
           <Route path="/data/past/:id" exact={true} component={Past}>
-         
-          </Route> */}
+          </Route>
         </IonRouterOutlet>
 
         <IonTabBar slot="bottom">
